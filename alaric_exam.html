@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alaric Market Research & Advisory — Entrance Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:        #0A0F1E;
+    --navy-mid:    #111827;
+    --navy-light:  #1A2540;
+    --slate:       #334155;
+    --slate-light: #64748B;
+    --gold:        #C9A84C;
+    --gold-light:  #E2C47A;
+    --gold-dim:    #8A6B28;
+    --white:       #F0F4FF;
+    --white-dim:   #A8B8D0;
+    --danger:      #E05252;
+    --success:     #34D399;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.35;
+  }
+
+  /* ── GOLD LINE ACCENT ── */
+  body::after {
+    content: '';
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    z-index: 1000;
+  }
+
+  /* ════════════════════════════
+     SPLASH SCREEN
+  ════════════════════════════ */
+  #splash {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    background: var(--navy);
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+  #splash.hidden { opacity: 0; visibility: hidden; }
+
+  .splash-inner {
+    width: min(520px, 92vw);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .brand-block {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .brand-logo {
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+  }
+  .logo-mark {
+    width: 48px; height: 48px;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .logo-mark span {
+    transform: rotate(-45deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--gold);
+  }
+  .brand-name {
+    text-align: left;
+  }
+  .brand-name h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.04em;
+    line-height: 1.1;
+  }
+  .brand-name p {
+    font-size: 10px; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.22em;
+    text-transform: uppercase; margin-top: 3px;
+  }
+
+  .splash-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 500;
+    color: var(--white-dim); letter-spacing: 0.15em;
+    text-transform: uppercase; text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .form-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .form-group { margin-bottom: 24px; }
+  .form-group label {
+    display: block;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .form-group input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+  .form-group input::placeholder { color: var(--slate-light); }
+
+  .form-notice {
+    font-size: 11px; color: var(--white-dim);
+    text-align: center; margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .form-notice strong { color: var(--gold); font-weight: 500; }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none; border-radius: 3px;
+    padding: 14px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .error-msg {
+    font-size: 12px; color: var(--danger);
+    margin-top: 6px; display: none;
+  }
+
+  /* ════════════════════════════
+     EXAM SCREEN
+  ════════════════════════════ */
+  #exam { display: none; min-height: 100vh; }
+  #exam.active { display: block; }
+
+  /* HEADER */
+  .exam-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,15,30,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .header-brand {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .header-logo-mark {
+    width: 30px; height: 30px;
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(45deg); flex-shrink: 0;
+  }
+  .header-logo-mark span {
+    transform: rotate(-45deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-weight: 700; color: var(--gold);
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600; color: var(--white);
+    letter-spacing: 0.03em;
+  }
+  .header-subtitle {
+    font-size: 10px; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    display: flex; align-items: center; gap: 32px;
+  }
+
+  /* TIMER */
+  .timer-block {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .timer-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+  }
+  .timer-display {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px; font-weight: 500;
+    color: var(--gold);
+    transition: color 0.3s;
+  }
+  .timer-display.warning { color: #F59E0B; }
+  .timer-display.critical { color: var(--danger); animation: pulse 1s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+  /* PROGRESS */
+  .progress-block { text-align: right; }
+  .progress-label {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+    margin-bottom: 5px;
+  }
+  .progress-bar-wrap {
+    width: 140px; height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--white-dim);
+    margin-top: 4px;
+  }
+
+  /* MAIN EXAM BODY */
+  .exam-body {
+    max-width: 860px; margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 32px; margin-top: 48px;
+  }
+  .section-divider:first-child { margin-top: 0; }
+  .section-divider .line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent);
+  }
+  .section-divider .line.right {
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3));
+  }
+  .section-tag {
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+    padding: 4px 12px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .question-card:hover { border-color: rgba(201,168,76,0.2); }
+  .question-card.answered { border-color: rgba(201,168,76,0.35); }
+
+  .q-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--gold-dim); letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .q-text {
+    font-size: 15px; font-weight: 400;
+    color: var(--white); margin-bottom: 20px;
+    line-height: 1.65;
+  }
+
+  .options-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-label {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+  }
+  .option-label:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .option-label input[type="radio"] { display: none; }
+
+  .option-label.selected {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold);
+  }
+
+  .option-key {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border: 1.5px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--gold-dim);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .option-label.selected .option-key {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+  }
+  .option-text {
+    font-size: 14px; color: var(--white-dim);
+    line-height: 1.55; padding-top: 3px;
+  }
+  .option-label.selected .option-text { color: var(--white); }
+
+  /* SUBMIT BAR */
+  .submit-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(10,15,30,0.97);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    backdrop-filter: blur(12px);
+    padding: 16px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 100;
+  }
+  .submit-info {
+    font-size: 12px; color: var(--white-dim);
+  }
+  .submit-info strong { color: var(--white); }
+  .submit-info span { color: var(--gold); }
+
+  .btn-submit {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    border-radius: 3px;
+    padding: 11px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-submit:hover {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ════════════════════════════
+     RESULT SCREEN
+  ════════════════════════════ */
+  #result {
+    display: none; position: fixed; inset: 0;
+    background: var(--navy);
+    align-items: center; justify-content: center;
+    z-index: 300;
+  }
+  #result.active { display: flex; }
+
+  .result-inner {
+    text-align: center; width: min(480px, 90vw);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .result-icon {
+    width: 72px; height: 72px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    font-size: 28px;
+  }
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 600;
+    color: var(--white); margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .result-line {
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin: 0 auto 24px;
+  }
+  .result-msg {
+    font-size: 15px; color: var(--white-dim);
+    line-height: 1.8; margin-bottom: 40px;
+  }
+  .result-ref {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 8px 20px; border-radius: 2px;
+  }
+
+  /* OVERLAY (confirm submit) */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 400;
+    display: none; align-items: center; justify-content: center;
+  }
+  .overlay.active { display: flex; }
+
+  .dialog {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    padding: 40px; width: min(440px, 90vw);
+    text-align: center;
+    animation: fadeUp 0.3s ease both;
+  }
+  .dialog h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .dialog p {
+    font-size: 14px; color: var(--white-dim);
+    margin-bottom: 32px; line-height: 1.7;
+  }
+  .dialog-btns { display: flex; gap: 12px; justify-content: center; }
+  .btn-cancel {
+    flex: 1; padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white-dim);
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-cancel:hover { border-color: rgba(255,255,255,0.35); }
+  .btn-confirm {
+    flex: 1; padding: 12px;
+    background: var(--gold); color: var(--navy);
+    border: none; border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-confirm:hover { background: var(--gold-light); }
+
+  /* SUBMITTING SPINNER */
+  .spinner {
+    width: 20px; height: 20px;
+    border: 2px solid rgba(201,168,76,0.3);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block; vertical-align: middle;
+    margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .exam-header { padding: 0 16px; }
+    .exam-body { padding: 32px 16px 80px; }
+    .submit-bar { padding: 14px 16px; }
+    .form-card { padding: 28px 20px; }
+    .header-meta { gap: 16px; }
+    .progress-block { display: none; }
+    .question-card { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ SPLASH ══════════════════════════════ -->
+<div id="splash">
+  <div class="splash-inner">
+    <div class="brand-block">
+      <div class="brand-logo">
+        <div class="logo-mark"><span>A</span></div>
+        <div class="brand-name">
+          <h1>Alaric Market Research<br>&amp; Advisory</h1>
+          <p>Capital Markets · Proprietary Trading</p>
+        </div>
+      </div>
+      <p class="splash-title">Entrance Assessment Portal</p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label for="inp-name">Full Name</label>
+        <input type="text" id="inp-name" placeholder="e.g. Arjun Mehta" autocomplete="name"/>
+        <p class="error-msg" id="err-name">Please enter your full name.</p>
+      </div>
+      <div class="form-group">
+        <label for="inp-email">Email Address</label>
+        <input type="email" id="inp-email" placeholder="e.g. arjun@email.com" autocomplete="email"/>
+        <p class="error-msg" id="err-email">Please enter a valid email address.</p>
+      </div>
+      <p class="form-notice">
+        This assessment contains <strong>25 questions</strong> to be completed in
+        <strong>45 minutes</strong>. The timer begins immediately upon entry.
+        Ensure a stable internet connection before proceeding.
+      </p>
+      <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EXAM ════════════════════════════════ -->
+<div id="exam">
+  <header class="exam-header">
+    <div class="header-brand">
+      <div class="header-logo-mark"><span>A</span></div>
+      <div>
+        <div class="header-title">Alaric Market Research</div>
+        <div class="header-subtitle">Entrance Assessment</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="timer-block">
+        <span class="timer-label">Time Remaining</span>
+        <span class="timer-display" id="timer">45:00</span>
+      </div>
+      <div class="progress-block">
+        <div class="progress-label">Progress</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-count" id="progress-count">0 / 25</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="exam-body" id="exam-body">
+    <!-- Injected by JS -->
+  </div>
+
+  <div class="submit-bar">
+    <div class="submit-info">
+      Questions answered: <strong><span id="answered-count">0</span> / 25</strong>
+      &nbsp;·&nbsp; <span id="unanswered-note">Unanswered questions will be marked as skipped.</span>
+    </div>
+    <button class="btn-submit" id="btn-submit">Submit Assessment</button>
+  </div>
+</div>
+
+<!-- ══ CONFIRM DIALOG ══════════════════════ -->
+<div class="overlay" id="overlay-confirm">
+  <div class="dialog">
+    <h3>Submit Assessment?</h3>
+    <p id="dialog-msg">You have answered <strong id="dlg-answered">0</strong> of 25 questions.<br>
+    Unanswered questions cannot be revisited after submission.</p>
+    <div class="dialog-btns">
+      <button class="btn-cancel" id="btn-cancel-submit">Go Back</button>
+      <button class="btn-confirm" id="btn-confirm-submit">Confirm Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESULT ══════════════════════════════ -->
+<div id="result">
+  <div class="result-inner">
+    <div class="result-icon">✓</div>
+    <h2 class="result-title">Assessment Complete</h2>
+    <div class="result-line"></div>
+    <p class="result-msg">
+      Thank you for completing the Alaric entrance assessment.<br>
+      Our team will carefully review your submission and contact you<br>
+      within <strong style="color:var(--gold)">3–5 business days</strong> regarding the next steps.
+    </p>
+    <span class="result-ref" id="result-ref">REF: —</span>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  CONFIG — replace with your Apps Script URL
+// ══════════════════════════════════════════
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPh67bshbnU_CfCArHL1d5H06iwDoU0EOe-zHo2q1z0NAzHGiJWT8sUketMI7ZegfzCw/exec";
+const EXAM_DURATION_SECONDS = 45 * 60; // 45 minutes
+
+// ══════════════════════════════════════════
+//  QUESTION BANK
+// ══════════════════════════════════════════
+const QUESTIONS = [
+  // SECTION 1: TECHNICAL ANALYSIS
+  {
+    section: "Section 1: Technical Analysis",
+    text: "What does RSI stand for in technical analysis?",
+    options: ["Relative Strength Index","Rapid Signal Indicator","Resistance Support Index","Regression Strength Index"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "A \"golden cross\" occurs when:",
+    options: ["50-day EMA crosses above 200-day EMA","Price crosses below support","RSI goes above 70","Volume decreases sharply"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "Which indicator is used to measure market momentum?",
+    options: ["MACD","Bollinger Bands","Fibonacci retracement","VWAP"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "What does \"overbought\" typically mean in RSI terms?",
+    options: ["RSI below 30","RSI above 70","RSI at 50","RSI crossing zero"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "Which moving average reacts fastest to price changes?",
+    options: ["200-day SMA","50-day SMA","5-day EMA","100-day EMA"],
+    answer: 2
+  },
+  {
+    section: null,
+    text: "A divergence in RSI means:",
+    options: ["Price and indicator move in opposite directions","Volume and price move together","Two moving averages cross","Support becomes resistance"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "What does a \"death cross\" indicate for intraday traders?",
+    options: ["Bullish trend start","Bearish trend likely","Range-bound market","High volatility only"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "ADX value above 25 suggests:",
+    options: ["Strong trend","No trend","Overbought condition","Reversal imminent"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "Which is a leading (not lagging) indicator?",
+    options: ["Moving average","MACD","Stochastic oscillator","Bollinger Bands"],
+    answer: 2
+  },
+  // SECTION 2: CHARTING
+  {
+    section: "Section 2: Charting",
+    text: "Which chart type shows open, high, low, close?",
+    options: ["Line chart","Candlestick chart","Bar chart","Point & figure"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "A \"hammer\" candlestick indicates:",
+    options: ["Bearish reversal","Bullish reversal","Continuation","No meaning"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "What does a \"doji\" candlestick signify?",
+    options: ["Strong buying","Strong selling","Indecision in market","Gap opening"],
+    answer: 2
+  },
+  {
+    section: null,
+    text: "Support in charting means:",
+    options: ["Price level where buying interest exists","Price level where selling pressure increases","Average price of last 10 days","Highest price ever"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "A gap up opening with high volume suggests:",
+    options: ["Weakness","Strong buying interest","Reversal","Doji formation"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "In intraday, a \"false breakout\" above resistance means:",
+    options: ["Price stays above resistance","Price breaks then reverses quickly","Volume confirms breakout","Support is broken"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "Which pattern is a bearish reversal?",
+    options: ["Head & shoulders","Inverse head & shoulders","Ascending triangle","Bull flag"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "VWAP is most useful for intraday traders because:",
+    options: ["It shows average price with volume","It predicts next day's open","It replaces stop loss","It works only for delivery"],
+    answer: 0
+  },
+  {
+    section: null,
+    text: "What does \"time & sales\" data show you?",
+    options: ["Every executed trade with size","Only large trades","Only bid-ask spread","Only opening price"],
+    answer: 0
+  },
+  // SECTION 3: CAPITAL MARKET MACROS
+  {
+    section: "Section 3: Capital Market Macros",
+    text: "Which index represents the Indian stock market most broadly?",
+    options: ["Nifty 50","Sensex","Nifty 500","Bank Nifty"],
+    answer: 2
+  },
+  {
+    section: null,
+    text: "If RBI increases repo rate, intraday traders expect:",
+    options: ["Market bullish","Market bearish","No change","Only IT stocks rise"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "FII selling heavily usually means:",
+    options: ["Strong market","Weakness in market","No impact","Only small caps fall"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "Which macroeconomic data is most watched before market open?",
+    options: ["GDP quarterly","Inflation (CPI/WPI)","Election results","Monsoon forecast"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "A \"hawkish\" central bank statement means:",
+    options: ["Rate cuts coming","Rate hikes likely","Market will rally","Currency will weaken"],
+    answer: 1
+  },
+  // SECTION 4: STOCK SELECTION
+  {
+    section: "Section 4: Stock Selection & Filtration",
+    text: "Which screener filter is best for intraday momentum?",
+    options: ["PE ratio < 15","Volume > 200% of average","Debt to equity < 1","Dividend yield > 3%"],
+    answer: 1
+  },
+  {
+    section: null,
+    text: "What is the first thing to check in a stock for intraday?",
+    options: ["52-week high/low","Previous day's range + today's pre-market","CEO name","Yearly sales"],
+    answer: 1
+  }
+];
+
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+let userName = "", userEmail = "";
+let shuffledQuestions = [];
+let answers = [];
+let timeLeft = EXAM_DURATION_SECONDS;
+let timerInterval = null;
+let submitted = false;
+
+// ══════════════════════════════════════════
+//  SHUFFLE (Fisher-Yates)
+// ══════════════════════════════════════════
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ══════════════════════════════════════════
+//  SECURITY
+// ══════════════════════════════════════════
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("copy",  e => e.preventDefault());
+document.addEventListener("cut",   e => e.preventDefault());
+document.addEventListener("paste", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && ['c','x','v','u','s','a','p'].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+  if (e.key === "F12") e.preventDefault();
+});
+
+// ══════════════════════════════════════════
+//  SPLASH → EXAM
+// ══════════════════════════════════════════
+document.getElementById("btn-begin").addEventListener("click", () => {
+  const nameVal  = document.getElementById("inp-name").value.trim();
+  const emailVal = document.getElementById("inp-email").value.trim();
+  let valid = true;
+
+  if (!nameVal) {
+    document.getElementById("err-name").style.display = "block"; valid = false;
+  } else {
+    document.getElementById("err-name").style.display = "none";
+  }
+  if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+    document.getElementById("err-email").style.display = "block"; valid = false;
+  } else {
+    document.getElementById("err-email").style.display = "none";
+  }
+  if (!valid) return;
+
+  userName  = nameVal;
+  userEmail = emailVal;
+
+  // Randomise — every candidate gets a unique order
+  shuffledQuestions = shuffle(QUESTIONS);
+  answers = new Array(shuffledQuestions.length).fill(null);
+
+  document.getElementById("splash").classList.add("hidden");
+  document.getElementById("exam").classList.add("active");
+
+  buildExam();
+  startTimer();
+});
+
+// ══════════════════════════════════════════
+//  BUILD EXAM (shuffled)
+// ══════════════════════════════════════════
+function buildExam() {
+  const body = document.getElementById("exam-body");
+  const keys = ["A","B","C","D"];
+  let html = "";
+
+  html += `<div class="section-divider">
+    <div class="line"></div>
+    <div class="section-tag">Capital Markets — Entrance Assessment · 25 Questions</div>
+    <div class="line right"></div>
+  </div>`;
+
+  shuffledQuestions.forEach((q, i) => {
+    html += `<div class="question-card" id="qcard-${i}">
+      <div class="q-number">Q${String(i+1).padStart(2,"0")} / 25</div>
+      <div class="q-text">${q.text}</div>
+      <div class="options-grid">`;
+    q.options.forEach((opt, j) => {
+      html += `<label class="option-label" id="opt-${i}-${j}">
+        <input type="radio" name="q${i}" value="${j}" onchange="selectAnswer(${i},${j})"/>
+        <span class="option-key">${keys[j]}</span>
+        <span class="option-text">${opt}</span>
+      </label>`;
+    });
+    html += `</div></div>`;
+  });
+
+  body.innerHTML = html;
+}
+
+// ══════════════════════════════════════════
+//  ANSWER SELECTION
+// ══════════════════════════════════════════
+function selectAnswer(qIndex, optIndex) {
+  if (submitted) return;
+  answers[qIndex] = optIndex;
+  const card = document.getElementById(`qcard-${qIndex}`);
+  card.classList.add("answered");
+  card.querySelectorAll(".option-label").forEach((lbl, j) => {
+    lbl.classList.toggle("selected", j === optIndex);
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const count = answers.filter(a => a !== null).length;
+  document.getElementById("answered-count").textContent = count;
+  document.getElementById("progress-count").textContent = `${count} / 25`;
+  document.getElementById("progress-fill").style.width = `${(count/25)*100}%`;
+  document.getElementById("dlg-answered").textContent = count;
+}
+
+// ══════════════════════════════════════════
+//  TIMER
+// ══════════════════════════════════════════
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) { clearInterval(timerInterval); autoSubmit(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timeLeft / 60);
+  const s = timeLeft % 60;
+  const display = document.getElementById("timer");
+  display.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  display.classList.remove("warning","critical");
+  if (timeLeft <= 60)       display.classList.add("critical");
+  else if (timeLeft <= 300) display.classList.add("warning");
+}
+
+function autoSubmit() {
+  if (submitted) return;
+  document.getElementById("overlay-confirm").classList.remove("active");
+  doSubmit(true);
+}
+
+// ══════════════════════════════════════════
+//  CONFIRM DIALOG
+// ══════════════════════════════════════════
+document.getElementById("btn-submit").addEventListener("click", () => {
+  if (submitted) return;
+  updateProgress();
+  document.getElementById("overlay-confirm").classList.add("active");
+});
+document.getElementById("btn-cancel-submit").addEventListener("click", () => {
+  document.getElementById("overlay-confirm").classList.remove("active");
+});
+document.getElementById("btn-confirm-submit").addEventListener("click", () => {
+  doSubmit(false);
+});
+
+// ══════════════════════════════════════════
+//  SUBMISSION — sends full analysis
+// ══════════════════════════════════════════
+async function doSubmit(isAutoSubmit) {
+  if (submitted) return;
+  submitted = true;
+  clearInterval(timerInterval);
+
+  document.getElementById("overlay-confirm").classList.remove("active");
+  document.getElementById("btn-submit").disabled = true;
+  document.getElementById("btn-submit").innerHTML = '<span class="spinner"></span>Submitting…';
+
+  const keys = ["A","B","C","D"];
+  let score = 0;
+
+  // Build per-question analysis (keyed to original question text)
+  const detailedAnswers = shuffledQuestions.map((q, i) => {
+    const candidateIdx   = answers[i];
+    const correctIdx     = q.answer;
+    const isCorrect      = candidateIdx === correctIdx;
+    if (isCorrect) score++;
+    return {
+      questionText:    q.text,
+      section:         q.section || "General",
+      candidateAnswer: candidateIdx !== null ? keys[candidateIdx] : "Skipped",
+      correctAnswer:   keys[correctIdx],
+      result:          candidateIdx === null ? "Skipped" : (isCorrect ? "Correct" : "Wrong")
+    };
+  });
+
+  const refId = `AMR-${Date.now().toString(36).toUpperCase()}`;
+
+  const payload = {
+    name:            userName,
+    email:           userEmail,
+    score:           score,
+    total:           shuffledQuestions.length,
+    percentage:      ((score / shuffledQuestions.length) * 100).toFixed(1),
+    autoSubmit:      isAutoSubmit,
+    referenceId:     refId,
+    submittedAt:     new Date().toISOString(),
+    detailedAnswers: JSON.stringify(detailedAnswers)
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode:   "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.warn("Submission error:", err);
+  }
+
+  showResult(refId);
+}
+
+// ══════════════════════════════════════════
+//  RESULT SCREEN
+// ══════════════════════════════════════════
+function showResult(refId) {
+  document.getElementById("exam").style.display = "none";
+  document.getElementById("result").classList.add("active");
+  document.getElementById("result-ref").textContent = `REF: ${refId}`;
+}
+</script>
+</body>
+</html>
