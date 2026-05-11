@@ -534,7 +534,7 @@
       </div>
       <p class="form-notice">
         This assessment contains <strong>25 questions</strong> to be completed in
-        <strong>45 minutes</strong>. The timer begins immediately upon entry.
+        <strong>30 minutes</strong>. The timer begins immediately upon entry.
         Ensure a stable internet connection before proceeding.
       </p>
       <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
@@ -592,10 +592,18 @@
     <h2 class="result-title">Assessment Complete</h2>
     <div class="result-line"></div>
     <p class="result-msg">
-      Thank you for completing the Alaric entrance assessment.<br>
-      Our team will carefully review your submission and contact you<br>
-      within <strong style="color:var(--accent-light)">3–5 business days</strong> regarding the next steps.
-    </p>
+  Thank you for completing the Alaric Market Research & Advisory Assessment.<br><br>
+
+  Your responses have been successfully submitted and recorded.<br><br>
+
+  <strong style="color:var(--accent-light)">
+    Results Will Be Announced Soon
+  </strong>
+</p>
+
+<span class="result-ref" id="result-ref">
+  REF: —
+</span>
     <span class="result-ref" id="result-ref">REF: —</span>
   </div>
 </div>
@@ -604,7 +612,7 @@
 //  CONFIG — replace with your Apps Script URL
 // ══════════════════════════════════════════
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPh67bshbnU_CfCArHL1d5H06iwDoU0EOe-zHo2q1z0NAzHGiJWT8sUketMI7ZegfzCw/exec";
-const EXAM_DURATION_SECONDS = 45 * 60; // 45 minutes
+const EXAM_DURATION_SECONDS = 30 * 60; // 30 minutes
 
 // ══════════════════════════════════════════
 //  QUESTION BANK
