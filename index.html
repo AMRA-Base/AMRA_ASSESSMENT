@@ -24,23 +24,43 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  height: 100%;
-  margin: 0;
-  background: var(--navy);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-  
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Subtle grid texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Orange top bar */
+  body::after {
+    content: '';
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-bold), var(--accent), var(--accent-light));
+    z-index: 1000;
+  }
 
   /* ══ SPLASH ══════════════════════════════════ */
   #splash {
@@ -62,8 +82,11 @@ body {
   .brand-block { text-align: center; margin-bottom: 36px; }
 
   .brand-logo-img {
-    height: 80px; width: auto;
-    display: block; margin: 0 auto 24px;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 24px;
     filter: drop-shadow(0 4px 24px rgba(245,130,10,0.18));
   }
 
@@ -73,7 +96,7 @@ body {
     color: var(--white-dim);
     margin-bottom: 6px;
   }
-  
+
   .splash-level {
     font-size: 10px; font-weight: 700;
     letter-spacing: 0.24em; text-transform: uppercase;
@@ -85,7 +108,7 @@ body {
     display: inline-block;
     border: 1px solid rgba(255,157,56,0.3);
   }
-  
+
   .splash-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px; font-weight: 600;
@@ -436,7 +459,7 @@ body {
     background: rgba(245,130,10,0.05);
   }
 
-  /* ══ DIALOG ══════════════════════════════ */
+  /* ══ DIALOG / OVERLAYS ═══════════════════ */
   .overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.75);
@@ -466,7 +489,7 @@ body {
     font-size: 14px; color: var(--white-dim);
     margin-bottom: 32px; line-height: 1.7;
   }
-  .dialog-btns { display: flex; gap: 12px; }
+  .dialog-btns { display: flex; gap: 12px; margin-top: 8px; }
   .btn-cancel {
     flex: 1; padding: 13px;
     background: transparent;
@@ -500,7 +523,7 @@ body {
     display: inline-block; vertical-align: middle;
     margin-right: 8px;
   }
-  
+
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
@@ -515,21 +538,19 @@ body {
     .header-meta { gap: 16px; }
     .progress-block { display: none; }
     .question-card { padding: 20px 18px; }
-    .brand-logo-img { height: 60px; }
+    .brand-logo-img { max-width: 260px; }
     .submit-info { width: 100%; order: 1; font-size: 12px; }
     .btn-submit { order: 2; padding: 10px 30px; }
   }
 </style>
+</head>
+<body>
 
 <!-- ══ SPLASH ════════════════════════════════════ -->
 <div id="splash">
   <div class="splash-inner">
     <div class="brand-block">
-      <svg class="brand-logo-img" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-        <rect width="200" height="80" fill="#0F1D3A" rx="8"/>
-        <circle cx="40" cy="40" r="20" fill="#F5820A"/>
-        <text x="70" y="48" font-family="Cormorant Garamond, serif" font-size="28" font-weight="600" fill="#FFFFFF">ALARIC</text>
-      </svg>
+      <img src="amra-logo.jpg" alt="AMRA - Alaric Market Research and Advisory" class="brand-logo-img" />
       <div class="splash-divider"><span></span></div>
       <p class="splash-tagline">Capital Markets · Proprietary Research</p>
       <div style="margin: 12px 0;">
@@ -587,19 +608,39 @@ body {
       Questions answered: <strong><span id="answered-count">0</span> / 25</strong>
       &nbsp;·&nbsp; <span>Unanswered questions will be marked as skipped.</span>
     </div>
-    <button class="btn-submit" id="btn-submit">Submit Assessment</button>
+    <button class="btn-submit" id="btn-next-form">Next: Demographic Form</button>
   </div>
 </div>
 
-<!-- ══ CONFIRM DIALOG ════════════════════════════ -->
-<div class="overlay" id="overlay-confirm">
+<!-- ══ DEMOGRAPHIC FORM OVERLAY ═══════════════════ -->
+<div class="overlay" id="overlay-form">
   <div class="dialog">
-    <h3>Submit Assessment?</h3>
-    <p>You have answered <strong id="dlg-answered">0</strong> of 25 questions.<br>
-    Unanswered questions cannot be revisited after submission.</p>
+    <h3>Final Details</h3>
+    <p>Please provide a few basic details before submitting your responses.</p>
+
+    <div class="form-group" style="text-align:left; margin-bottom:14px;">
+      <label for="inp-age">Age</label>
+      <input type="number" id="inp-age" placeholder="e.g. 22" min="16" />
+    </div>
+
+    <div class="form-group" style="text-align:left; margin-bottom:14px;">
+      <label for="inp-experience">Total Trading Experience</label>
+      <input type="text" id="inp-experience" placeholder="e.g. 6 months intraday in equities" />
+    </div>
+
+    <div class="form-group" style="text-align:left; margin-bottom:14px;">
+      <label for="inp-firm">Firm Name (Trading Firm / Self Funded)</label>
+      <input type="text" id="inp-firm" placeholder="e.g. Self funded / XYZ Prop Desk" />
+    </div>
+
+    <div class="form-group" style="text-align:left; margin-bottom:22px;">
+      <label for="inp-dependents">Number of Dependents</label>
+      <input type="number" id="inp-dependents" placeholder="e.g. 2" min="0" />
+    </div>
+
     <div class="dialog-btns">
-      <button class="btn-cancel" id="btn-cancel-submit">Go Back</button>
-      <button class="btn-confirm" id="btn-confirm-submit">Confirm Submit</button>
+      <button class="btn-cancel" id="btn-cancel-form">Go Back</button>
+      <button class="btn-confirm" id="btn-confirm-form">Submit Assessment</button>
     </div>
   </div>
 </div>
@@ -631,7 +672,7 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPh67bshbnU_Cf
 const EXAM_DURATION_SECONDS = 30 * 60; // 30 minutes
 
 // ══════════════════════════════════════════
-//  QUESTION BANK — 25 NEW QUESTIONS
+//  QUESTION BANK — 25 QUESTIONS
 // ══════════════════════════════════════════
 const QUESTIONS = [
   // SECTION 1: CANDLESTICK BASICS (Questions 1-5)
@@ -665,7 +706,7 @@ const QUESTIONS = [
     options: ["A small green candle followed by a smaller green candle","A small red candle followed by a larger green candle","A small green candle followed by a larger red candle that completely covers the previous candle's body","Two doji candles in a row"],
     answer: 2
   },
-  
+
   // SECTION 2: SUPPORT & RESISTANCE (Questions 6-9)
   {
     section: "Section 2: Support & Resistance",
@@ -691,7 +732,7 @@ const QUESTIONS = [
     options: ["Price breaks a level and continues moving in that direction","Price breaks a level but quickly reverses back through it","Price never reaches the level at all","Volume is completely absent during the move"],
     answer: 1
   },
-  
+
   // SECTION 3: TRENDS & TRENDLINES (Questions 10-13)
   {
     section: "Section 3: Trends & Trendlines",
@@ -717,7 +758,7 @@ const QUESTIONS = [
     options: ["Price touches the trendline once","A new higher high is made in a downtrend","Price breaks the trendline and makes a lower low (in uptrend) or higher high (in downtrend)","Volume drops to zero"],
     answer: 2
   },
-  
+
   // SECTION 4: CHART PATTERNS (Questions 14-17)
   {
     section: "Section 4: Chart Patterns",
@@ -743,7 +784,7 @@ const QUESTIONS = [
     options: ["Price touches the second bottom and reverses up","Price breaks above the resistance level (the middle peak) after forming two bottoms","Volume decreases on the breakout","Both bottoms are at different price levels"],
     answer: 1
   },
-  
+
   // SECTION 5: PRICE ACTION & CANDLE PATTERNS (Questions 18-21)
   {
     section: "Section 5: Price Action & Candle Patterns",
@@ -769,7 +810,7 @@ const QUESTIONS = [
     options: ["A long red candle at the bottom of a downtrend","A long lower wick (hammer/pin bar) after a series of down candles","A doji at the top of an uptrend","Increasing distance between price and moving average"],
     answer: 1
   },
-  
+
   // SECTION 6: BASIC INDICATORS & VOLUME (Questions 22-25)
   {
     section: "Section 6: Basic Indicators & Volume",
@@ -801,6 +842,7 @@ const QUESTIONS = [
 //  STATE
 // ══════════════════════════════════════════
 let userName = "", userEmail = "";
+let userAge = "", userExperience = "", userFirm = "", userDependents = "";
 let shuffledQuestions = [];
 let answers = [];
 let timeLeft = EXAM_DURATION_SECONDS;
@@ -836,15 +878,11 @@ function shuffleOptionsForQuestion(question) {
 // ══════════════════════════════════════════
 //  SECURITY: BASIC PROTECTIONS ONLY
 // ══════════════════════════════════════════
-// Disable right-click context menu
 document.addEventListener("contextmenu", e => e.preventDefault());
-
-// Disable copy, cut, paste
 document.addEventListener("copy", e => e.preventDefault());
 document.addEventListener("cut", e => e.preventDefault());
 document.addEventListener("paste", e => e.preventDefault());
 
-// Block page reload
 window.addEventListener("beforeunload", (e) => {
   if (!submitted) {
     e.preventDefault();
@@ -875,7 +913,6 @@ document.getElementById("btn-begin").addEventListener("click", () => {
   userName  = nameVal;
   userEmail = emailVal;
 
-  // Randomise — every candidate gets unique question order + shuffled options
   shuffledQuestions = shuffle(QUESTIONS).map(q => shuffleOptionsForQuestion(q));
   answers = new Array(shuffledQuestions.length).fill(null);
 
@@ -887,7 +924,7 @@ document.getElementById("btn-begin").addEventListener("click", () => {
 });
 
 // ══════════════════════════════════════════
-//  BUILD EXAM (shuffled questions & options)
+//  BUILD EXAM
 // ══════════════════════════════════════════
 function buildExam() {
   const body = document.getElementById("exam-body");
@@ -937,7 +974,6 @@ function updateProgress() {
   document.getElementById("answered-count").textContent = count;
   document.getElementById("progress-count").textContent = `${count} / 25`;
   document.getElementById("progress-fill").style.width = `${(count/25)*100}%`;
-  document.getElementById("dlg-answered").textContent = count;
 }
 
 // ══════════════════════════════════════════
@@ -963,41 +999,59 @@ function updateTimerDisplay() {
 
 function autoSubmit() {
   if (submitted) return;
-  document.getElementById("overlay-confirm").classList.remove("active");
   doSubmit(true);
 }
 
 // ══════════════════════════════════════════
-//  CONFIRM DIALOG
+//  FLOW: NEXT → DEMOGRAPHIC FORM → SUBMIT
 // ══════════════════════════════════════════
-document.getElementById("btn-submit").addEventListener("click", () => {
+document.getElementById("btn-next-form").addEventListener("click", () => {
   if (submitted) return;
   updateProgress();
-  document.getElementById("overlay-confirm").classList.add("active");
+  document.getElementById("overlay-form").classList.add("active");
 });
-document.getElementById("btn-cancel-submit").addEventListener("click", () => {
-  document.getElementById("overlay-confirm").classList.remove("active");
+
+document.getElementById("btn-cancel-form").addEventListener("click", () => {
+  document.getElementById("overlay-form").classList.remove("active");
 });
-document.getElementById("btn-confirm-submit").addEventListener("click", () => {
+
+document.getElementById("btn-confirm-form").addEventListener("click", () => {
+  const ageVal        = document.getElementById("inp-age").value.trim();
+  const expVal        = document.getElementById("inp-experience").value.trim();
+  const firmVal       = document.getElementById("inp-firm").value.trim();
+  const dependentsVal = document.getElementById("inp-dependents").value.trim();
+
+  if (!ageVal || !expVal || !firmVal || !dependentsVal) {
+    alert("Please fill all the fields before submitting.");
+    return;
+  }
+
+  userAge        = ageVal;
+  userExperience = expVal;
+  userFirm       = firmVal;
+  userDependents = dependentsVal;
+
   doSubmit(false);
 });
 
 // ══════════════════════════════════════════
-//  SUBMISSION — sends full analysis
+//  SUBMISSION
 // ══════════════════════════════════════════
 async function doSubmit(isAutoSubmit) {
   if (submitted) return;
   submitted = true;
   clearInterval(timerInterval);
 
-  document.getElementById("overlay-confirm").classList.remove("active");
-  document.getElementById("btn-submit").disabled = true;
-  document.getElementById("btn-submit").innerHTML = '<span class="spinner"></span>Submitting…';
+  document.getElementById("overlay-form").classList.remove("active");
+  const btn = document.getElementById("btn-next-form");
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Submitting…';
+  }
 
   const keys = ["A","B","C","D"];
   let score = 0;
 
-  // Build per-question analysis (keyed to original question text)
   const detailedAnswers = shuffledQuestions.map((q, i) => {
     const candidateIdx   = answers[i];
     const correctIdx     = q.answer;
@@ -1017,6 +1071,10 @@ async function doSubmit(isAutoSubmit) {
   const payload = {
     name:            userName,
     email:           userEmail,
+    age:             userAge,
+    tradingExperience: userExperience,
+    firmName:        userFirm,
+    dependents:      userDependents,
     score:           score,
     total:           shuffledQuestions.length,
     percentage:      ((score / shuffledQuestions.length) * 100).toFixed(1),
@@ -1049,7 +1107,5 @@ function showResult(refId) {
   document.getElementById("result-ref").textContent = `REF: ${refId}`;
 }
 </script>
-
-</head>
-<body></body>
+</body>
 </html>
