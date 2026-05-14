@@ -509,40 +509,6 @@
     margin-right: 8px;
   }
   
-  .security-warning {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background: rgba(25, 36, 72, 0.95);
-    border: 2px solid var(--danger);
-    border-radius: 8px;
-    padding: 32px;
-    text-align: center;
-    max-width: 400px;
-    backdrop-filter: blur(12px);
-    animation: fadeUp 0.3s ease;
-    display: none;
-  }
-  
-  .security-warning.active {
-    display: block;
-  }
-  
-  .security-warning h3 {
-    color: var(--danger);
-    margin-bottom: 12px;
-    font-size: 18px;
-  }
-  
-  .security-warning p {
-    color: var(--white-dim);
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
@@ -552,12 +518,14 @@
   @media (max-width: 640px) {
     .exam-header { padding: 0 16px; height: 60px; }
     .exam-body { padding: 28px 16px 86px; }
-    .submit-bar { padding: 14px 16px; }
+    .submit-bar { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
     .form-card { padding: 28px 20px; }
     .header-meta { gap: 16px; }
     .progress-block { display: none; }
     .question-card { padding: 20px 18px; }
     .brand-logo-img { height: 60px; }
+    .submit-info { width: 100%; order: 1; }
+    .btn-submit { order: 2; }
   }
 </style>
 
@@ -637,12 +605,6 @@
   </div>
 </div>
 
-<!-- ══ SECURITY WARNING ═══════════════════════════ -->
-<div class="security-warning" id="security-warning">
-  <h3>⚠ Security Alert</h3>
-  <p id="warning-msg">Developer tools or suspicious activity detected.</p>
-</div>
-
 <!-- ══ RESULT ═════════════════════════════════════ -->
 <div id="result">
   <div class="result-inner">
@@ -665,16 +627,6 @@
 // ══════════════════════════════════════════
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPh67bshbnU_CfCArHL1d5H06iwDoU0EOe-zHo2q1z0NAzHGiJWT8sUketMI7ZegfzCw/exec";
 const EXAM_DURATION_SECONDS = 30 * 60; // 30 minutes
-
-// ══════════════════════════════════════════
-//  SECURITY CONFIG
-// ══════════════════════════════════════════
-const SECURITY_CONFIG = {
-  tabExitWarningThreshold: 1,
-  tabExitAutoSubmitThreshold: 3,
-  timeAwayWarningThreshold: 5 * 60, // 5 minutes in seconds
-  timeAwayAutoSubmitThreshold: 10 * 60, // 10 minutes in seconds
-};
 
 // ══════════════════════════════════════════
 //  QUESTION BANK — 25 NEW QUESTIONS
@@ -852,13 +804,6 @@ let answers = [];
 let timeLeft = EXAM_DURATION_SECONDS;
 let timerInterval = null;
 let submitted = false;
-let securityState = {
-  tabExitCount: 0,
-  timeAwayDuration: 0,
-  isVisible: true,
-  lastActivityTime: Date.now(),
-  consoleAccessAttempts: 0
-};
 
 // ══════════════════════════════════════════
 //  SHUFFLE (Fisher-Yates)
@@ -887,176 +832,23 @@ function shuffleOptionsForQuestion(question) {
 }
 
 // ══════════════════════════════════════════
-//  SECURITY: DEVTOOLS & CONSOLE DETECTION
+//  SECURITY: BASIC PROTECTIONS ONLY
 // ══════════════════════════════════════════
-(function() {
-  let devToolsOpen = false;
-  
-  // Detect DevTools by checking console object
-  const checkDevTools = () => {
-    const threshold = 160;
-    if (window.outerHeight - window.innerHeight > threshold || 
-        window.outerWidth - window.innerWidth > threshold) {
-      if (!devToolsOpen) {
-        devToolsOpen = true;
-        handleSecurityViolation("DevTools detected. Assessment terminated.");
-      }
-    }
-  };
-
-  setInterval(checkDevTools, 1000);
-  
-  // Intercept console methods
-  const originalLog = console.log;
-  const originalWarn = console.warn;
-  const originalError = console.error;
-  
-  console.log = function() {
-    securityState.consoleAccessAttempts++;
-    handleSecurityViolation("Console tampering detected.");
-    return originalLog.apply(console, arguments);
-  };
-  console.warn = function() {
-    securityState.consoleAccessAttempts++;
-    return originalWarn.apply(console, arguments);
-  };
-  console.error = function() {
-    securityState.consoleAccessAttempts++;
-    return originalError.apply(console, arguments);
-  };
-
-  // Debugger statement detection
-  setInterval(function() {
-    const start = performance.now();
-    debugger;
-    const end = performance.now();
-    if (end - start > 100) {
-      handleSecurityViolation("Debugger detected. Assessment terminated.");
-    }
-  }, 5000);
-})();
-
-// ══════════════════════════════════════════
-//  SECURITY: KEYBOARD & RIGHT-CLICK BLOCKING
-// ══════════════════════════════════════════
+// Disable right-click context menu
 document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable copy, cut, paste
 document.addEventListener("copy", e => e.preventDefault());
 document.addEventListener("cut", e => e.preventDefault());
 document.addEventListener("paste", e => e.preventDefault());
 
-document.addEventListener("keydown", e => {
-  // F12
-  if (e.key === "F12") {
-    e.preventDefault();
-    handleSecurityViolation("Developer tools access blocked (F12).");
-    return false;
-  }
-  
-  // Ctrl+Shift+I
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
-    e.preventDefault();
-    handleSecurityViolation("Developer tools access blocked (Ctrl+Shift+I).");
-    return false;
-  }
-  
-  // Ctrl+U (View Source)
-  if (e.ctrlKey && e.key.toLowerCase() === 'u') {
-    e.preventDefault();
-    handleSecurityViolation("View source blocked (Ctrl+U).");
-    return false;
-  }
-  
-  // Ctrl+Shift+J
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j') {
-    e.preventDefault();
-    handleSecurityViolation("Developer tools access blocked (Ctrl+Shift+J).");
-    return false;
-  }
-  
-  // Ctrl+C, Ctrl+X, Ctrl+V, Ctrl+A, Ctrl+P, Ctrl+S
-  if ((e.ctrlKey || e.metaKey) && ['c','x','v','a','p','s'].includes(e.key.toLowerCase())) {
-    e.preventDefault();
-    return false;
-  }
-});
-
-// ══════════════════════════════════════════
-//  SECURITY: FULLSCREEN & TAB VISIBILITY
-// ══════════════════════════════════════════
-document.addEventListener('fullscreenchange', () => {
-  if (!document.fullscreenElement) {
-    handleFullscreenExit();
-  }
-});
-
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    securityState.isVisible = false;
-  } else {
-    securityState.isVisible = true;
-    if (!submitted) {
-      securityState.tabExitCount++;
-      handleTabExit();
-    }
-  }
-});
-
-window.addEventListener('blur', () => {
+// Block page reload
+window.addEventListener("beforeunload", (e) => {
   if (!submitted) {
-    securityState.timeAwayDuration = 0;
-    securityState.lastActivityTime = Date.now();
+    e.preventDefault();
+    e.returnValue = "Are you sure you want to leave? Your progress will be lost.";
   }
 });
-
-window.addEventListener('focus', () => {
-  if (!submitted) {
-    securityState.lastActivityTime = Date.now();
-  }
-});
-
-// ══════════════════════════════════════════
-//  SECURITY: VIOLATION HANDLERS
-// ══════════════════════════════════════════
-function handleSecurityViolation(message) {
-  if (submitted) return;
-  
-  showSecurityWarning(message);
-  submitted = true;
-  clearInterval(timerInterval);
-  
-  setTimeout(() => {
-    autoSubmit();
-  }, 3000);
-}
-
-function handleTabExit() {
-  if (submitted) return;
-  
-  if (securityState.tabExitCount === SECURITY_CONFIG.tabExitWarningThreshold) {
-    showSecurityWarning(`⚠ Warning: Tab exit detected (${securityState.tabExitCount}/${SECURITY_CONFIG.tabExitAutoSubmitThreshold}). Continuing to exit will auto-submit.`);
-  } else if (securityState.tabExitCount >= SECURITY_CONFIG.tabExitAutoSubmitThreshold) {
-    handleSecurityViolation(`Assessment auto-submitted due to ${securityState.tabExitCount} tab exits.`);
-  }
-}
-
-function handleFullscreenExit() {
-  if (submitted) {
-    showSecurityWarning("Fullscreen exited. Assessment already submitted.");
-  } else {
-    showSecurityWarning("⚠ You have exited fullscreen. Please continue the assessment.");
-  }
-}
-
-function showSecurityWarning(message) {
-  const warning = document.getElementById('security-warning');
-  const msg = document.getElementById('warning-msg');
-  msg.textContent = message;
-  warning.classList.add('active');
-  
-  setTimeout(() => {
-    warning.classList.remove('active');
-  }, 5000);
-}
 
 // ══════════════════════════════════════════
 //  SPLASH → EXAM
@@ -1229,7 +1021,6 @@ async function doSubmit(isAutoSubmit) {
     autoSubmit:      isAutoSubmit,
     referenceId:     refId,
     submittedAt:     new Date().toISOString(),
-    securityViolations: securityState.tabExitCount,
     detailedAnswers: JSON.stringify(detailedAnswers)
   };
 
