@@ -35,6 +35,8 @@
     -webkit-font-smoothing: antialiased;
     user-select: none;
     -webkit-user-select: none;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Subtle grid texture */
@@ -64,11 +66,13 @@
     z-index: 200;
     background: radial-gradient(ellipse at 60% 40%, #1E2D52 0%, #0F1D3A 70%);
     transition: opacity 0.7s ease, visibility 0.7s ease;
+    padding: 20px;
   }
   #splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
   .splash-inner {
-    width: min(520px, 92vw);
+    width: 100%;
+    max-width: 520px;
     animation: fadeUp 0.8s ease both;
   }
 
@@ -261,6 +265,7 @@
   .exam-body {
     max-width: 880px; margin: 0 auto;
     padding: 52px 40px 90px;
+    width: 100%;
   }
 
   .section-divider {
@@ -404,11 +409,13 @@
     background: radial-gradient(ellipse at 60% 40%, #1E2D52 0%, #0F1D3A 70%);
     align-items: center; justify-content: center;
     z-index: 300;
+    padding: 20px;
   }
   #result.active { display: flex; }
 
   .result-inner {
-    text-align: center; width: min(500px, 90vw);
+    text-align: center; width: 100%;
+    max-width: 500px;
     animation: fadeUp 0.8s ease both;
     padding: 48px 40px;
     background: rgba(25,36,72,0.7);
@@ -453,6 +460,7 @@
     backdrop-filter: blur(8px);
     z-index: 400;
     display: none; align-items: center; justify-content: center;
+    padding: 20px;
   }
   .overlay.active { display: flex; }
 
@@ -460,7 +468,8 @@
     background: var(--navy-mid);
     border: 1px solid rgba(245,130,10,0.3);
     border-radius: 8px;
-    padding: 44px; width: min(440px, 90vw);
+    padding: 44px; width: 100%;
+    max-width: 440px;
     text-align: center;
     animation: fadeUp 0.3s ease both;
     box-shadow: 0 24px 64px rgba(0,0,0,0.5);
@@ -524,8 +533,8 @@
     .progress-block { display: none; }
     .question-card { padding: 20px 18px; }
     .brand-logo-img { height: 60px; }
-    .submit-info { width: 100%; order: 1; }
-    .btn-submit { order: 2; }
+    .submit-info { width: 100%; order: 1; font-size: 12px; }
+    .btn-submit { order: 2; padding: 10px 30px; }
   }
 </style>
 
@@ -533,7 +542,11 @@
 <div id="splash">
   <div class="splash-inner">
     <div class="brand-block">
-      <img class="brand-logo-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+      <svg class="brand-logo-img" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="80" fill="#0F1D3A" rx="8"/>
+        <circle cx="40" cy="40" r="20" fill="#F5820A"/>
+        <text x="70" y="48" font-family="Cormorant Garamond, serif" font-size="28" font-weight="600" fill="#FFFFFF">ALARIC</text>
+      </svg>
       <div class="splash-divider"><span></span></div>
       <p class="splash-tagline">Capital Markets · Proprietary Research</p>
       <div style="margin: 12px 0;">
@@ -566,7 +579,10 @@
 <div id="exam">
   <header class="exam-header">
     <div class="header-brand">
-      <img class="header-logo-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+      <svg class="header-logo-img" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="12" fill="#F5820A"/>
+        <text x="40" y="28" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#FFFFFF">ALARIC</text>
+      </svg>
     </div>
     <div class="header-meta">
       <div class="timer-block">
@@ -608,7 +624,10 @@
 <!-- ══ RESULT ═════════════════════════════════════ -->
 <div id="result">
   <div class="result-inner">
-    <img class="result-logo" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+    <svg class="result-logo" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="25" fill="#F5820A"/>
+      <text x="90" y="50" font-family="Cormorant Garamond, serif" font-size="24" font-weight="600" fill="#FFFFFF">ALARIC</text>
+    </svg>
     <h2 class="result-title">Assessment Complete</h2>
     <div class="result-line"></div>
     <p class="result-msg">
