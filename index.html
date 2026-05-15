@@ -682,7 +682,7 @@ const ASSESSMENT_CONFIG = {
 };
 
 // REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQ0cX0sFNQgyxKVM-k1iLoo5t7cx7VpTeuWZQsenNCgTRH5Z1NS0TCwSK1ulWQP3dNKQ/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbycBZ-cQ_52wo8IOnw2Nqzq14w-f4kmP6Smeh7RKRfhJPUf6YWESq_zEaDb6iF8VKQ/exec";
 
 const EXAM_DURATION_SECONDS = ASSESSMENT_CONFIG.durationMinutes * 60;
 
@@ -1111,8 +1111,11 @@ async function doSubmit(isAutoSubmit) {
 
   // Show success message
   showSuccessMessage("✓ Submitting your assessment...");
+  console.log("📤 APPS_SCRIPT_URL:", APPS_SCRIPT_URL);
+  console.log("📦 Payload:", payload);
 
   try {
+    console.log("🔄 Sending fetch request...");
     const response = await fetch(APPS_SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -1121,8 +1124,12 @@ async function doSubmit(isAutoSubmit) {
       body: JSON.stringify(payload)
     });
 
+    console.log("📨 Response received. Status:", response.status);
+
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error("❌ Server error response:", errorText);
+      throw new Error(`Server error (${response.status}): ${response.statusText}`);
     }
 
     const result = await response.json();
@@ -1134,13 +1141,18 @@ async function doSubmit(isAutoSubmit) {
     }, 800);
 
   } catch (error) {
-    console.error("❌ Submission error:", error);
-    showErrorMessage(`Submission failed: ${error.message}. Please try again.`);
+    console.error("❌ SUBMISSION ERROR DETAILS:");
+    console.error("   Message:", error.message);
+    console.error("   Type:", error.name);
+    console.error("   Full Error:", error);
+    
+    const msg = `Submission failed: ${error.message}. Please check console (F12) for details.`;
+    showErrorMessage(msg);
     submitted = false;
 
     // Re-enable submit button
     const confirmBtn = document.getElementById("btn-confirm-form");
-    confirmBtn.disabled = false;
+    if (confirmBtn) confirmBtn.disabled = false;
   }
 }
 
