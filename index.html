@@ -664,7 +664,22 @@
     <span class="result-ref" id="result-ref">REF: —</span>
   </div>
 </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyB_lSMgXj01EVpxyZi1co3kyGe4CbT1l6U",
+    authDomain: "amra-assessment-portal.firebaseapp.com",
+    projectId: "amra-assessment-portal",
+    storageBucket: "amra-assessment-portal.firebasestorage.app",
+    messagingSenderId: "222903533932",
+    appId: "1:222903533932:web:b5f0867d285b062cb2f349"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  console.log("Firebase Connected");
+</script>
 <script>
 //  CONFIG — replace with your Apps Script URL
 // ══════════════════════════════════════════
