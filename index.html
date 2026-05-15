@@ -37,10 +37,8 @@
   }
 
   body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    margin: 0;
+}
 
   /* Subtle grid texture */
   body::before {
@@ -587,7 +585,7 @@
       <svg class="header-logo-img" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20" cy="20" r="12" fill="#F5820A"/>
         <text x="40" y="28" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#FFFFFF">ALARIC</text>
-      </svg>
+      <img    src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg"   class="header-logo-img"   alt="AMRA Logo" />
     </div>
     <div class="header-meta">
       <div class="timer-block">
@@ -652,7 +650,7 @@
     <svg class="result-logo" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="25" fill="#F5820A"/>
       <text x="90" y="50" font-family="Cormorant Garamond, serif" font-size="24" font-weight="600" fill="#FFFFFF">ALARIC</text>
-    </svg>
+    <img    src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg"   class="header-logo-img"   alt="AMRA Logo" />
     <h2 class="result-title">Assessment Complete</h2>
     <div class="result-line"></div>
     <p class="result-msg">
@@ -697,8 +695,14 @@ window.firebaseFns = {
 <script>
 //  CONFIG — replace with your Apps Script URL
 // ══════════════════════════════════════════
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPh67bshbnU_CfCArHL1d5H06iwDoU0EOe-zHo2q1z0NAzHGiJWT8sUketMI7ZegfzCw/exec";
-const EXAM_DURATION_SECONDS = 30 * 60; // 30 minutes
+const ASSESSMENT_CONFIG = {
+  level: 1,
+  title: "Entrance Assessment",
+  totalQuestions: 25,
+  durationMinutes: 30
+};
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxjTGq6JIQFQSyu1KVdN9ziLC4k9NsCZWESic4OCPBCL-LpOGeshutNBAZkQUMFu0E/exec";
+const EXAM_DURATION_SECONDS =   ASSESSMENT_CONFIG.durationMinutes * 60; // 30 minutes
 
 // ══════════════════════════════════════════
 //  QUESTION BANK — 25 QUESTIONS
@@ -1118,12 +1122,19 @@ async function doSubmit(isAutoSubmit) {
   await window.firebaseFns.addDoc(
     window.firebaseFns.collection(
       window.firebaseDB,
-      "assessment_result"
+      "assessment_results"
     ),
     payload
   );
 
   console.log("Assessment Saved");
+   await fetch(APPS_SCRIPT_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(payload)
+});
 
 } catch (err) {
 
