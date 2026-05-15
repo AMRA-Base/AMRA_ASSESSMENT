@@ -575,9 +575,7 @@
         Ensure a stable internet connection before proceeding.
       </p>
       <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
-      <button onclick="testFirebaseWrite()">
-  Test Firebase
-</button>
+      
     </div>
   </div>
 </div>
@@ -694,7 +692,7 @@ window.firebaseFns = {
   addDoc
 };
 
-  alert("Firebase Connected");
+
 </script>
 <script>
 //  CONFIG — replace with your Apps Script URL
@@ -879,60 +877,6 @@ let answers = [];
 let timeLeft = EXAM_DURATION_SECONDS;
 let timerInterval = null;
 let submitted = false;
-  async function testFirebaseWrite() {
-
-  try {
-
-    await window.firebaseFns.addDoc(
-      window.firebaseFns.collection(
-        window.firebaseDB,
-        "assessment_results"
-      ),
-      {
-        testName: "Firebase Working",
-        createdAt: new Date().toISOString()
-      }
-    );
-
-    alert("Data Saved Successfully");
-
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Firestore Write Failed");
-
-  }
-
-}
-
-testFirebaseWrite();
-async function testFirebaseWrite() {
-
-  try {
-
-    await window.firebaseFns.addDoc(
-      window.firebaseFns.collection(
-        window.firebaseDB,
-        "assessment_results"
-      ),
-      {
-        testName: "Firebase Working",
-        createdAt: new Date().toISOString()
-      }
-    );
-
-    alert("Data Saved Successfully");
-
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Firestore Write Failed");
-
-  }
-
-}
 
 // ══════════════════════════════════════════
 //  SHUFFLE (Fisher-Yates)
@@ -1169,16 +1113,23 @@ async function doSubmit(isAutoSubmit) {
     detailedAnswers: JSON.stringify(detailedAnswers)
   };
 
-  try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      mode:   "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  } catch (err) {
-    console.warn("Submission error:", err);
-  }
+ try {
+
+  await window.firebaseFns.addDoc(
+    window.firebaseFns.collection(
+      window.firebaseDB,
+      "assessment_result"
+    ),
+    payload
+  );
+
+  console.log("Assessment Saved");
+
+} catch (err) {
+
+  console.error("Firebase Error:", err);
+
+}
 
   showResult(refId);
 }
