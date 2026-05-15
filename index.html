@@ -879,6 +879,34 @@ let answers = [];
 let timeLeft = EXAM_DURATION_SECONDS;
 let timerInterval = null;
 let submitted = false;
+  async function testFirebaseWrite() {
+
+  try {
+
+    await window.firebaseFns.addDoc(
+      window.firebaseFns.collection(
+        window.firebaseDB,
+        "assessment_results"
+      ),
+      {
+        testName: "Firebase Working",
+        createdAt: new Date().toISOString()
+      }
+    );
+
+    alert("Data Saved Successfully");
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert("Firestore Write Failed");
+
+  }
+
+}
+
+testFirebaseWrite();
 async function testFirebaseWrite() {
 
   try {
