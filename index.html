@@ -34,11 +34,9 @@
     font-size: 15px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
   }
-
-  body {
-    margin: 0;
-}
 
   /* Subtle grid texture */
   body::before {
@@ -522,6 +520,16 @@
     margin-right: 8px;
   }
 
+  .success-msg {
+    font-size: 13px; color: var(--success);
+    margin-top: 8px; display: none; text-align: center;
+  }
+
+  .error-msg-submission {
+    font-size: 13px; color: var(--danger);
+    margin-top: 8px; display: none; text-align: center;
+  }
+
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
@@ -573,7 +581,6 @@
         Ensure a stable internet connection before proceeding.
       </p>
       <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
-      
     </div>
   </div>
 </div>
@@ -582,10 +589,7 @@
 <div id="exam">
   <header class="exam-header">
     <div class="header-brand">
-      <svg class="header-logo-img" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="12" fill="#F5820A"/>
-        <text x="40" y="28" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="#FFFFFF">ALARIC</text>
-      <img    src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg"   class="header-logo-img"   alt="AMRA Logo" />
+      <img src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg" alt="AMRA Logo" style="height: 40px; width: auto;" />
     </div>
     <div class="header-meta">
       <div class="timer-block">
@@ -637,6 +641,11 @@
       <input type="number" id="inp-dependents" placeholder="e.g. 2" min="0" />
     </div>
 
+    <div id="form-messages">
+      <p class="success-msg" id="success-msg">✓ Submitting your assessment...</p>
+      <p class="error-msg-submission" id="error-msg-submission"></p>
+    </div>
+
     <div class="dialog-btns">
       <button class="btn-cancel" id="btn-cancel-form">Go Back</button>
       <button class="btn-confirm" id="btn-confirm-form">Submit Assessment</button>
@@ -647,53 +656,23 @@
 <!-- ══ RESULT ═════════════════════════════════════ -->
 <div id="result">
   <div class="result-inner">
-    <svg class="result-logo" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="25" fill="#F5820A"/>
-      <text x="90" y="50" font-family="Cormorant Garamond, serif" font-size="24" font-weight="600" fill="#FFFFFF">ALARIC</text>
-    <img    src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg"   class="header-logo-img"   alt="AMRA Logo" />
+    <img src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg" alt="AMRA Logo" style="height: 64px; width: auto; margin: 0 auto 32px; display: block; filter: drop-shadow(0 4px 16px rgba(245,130,10,0.2));" />
     <h2 class="result-title">Assessment Complete</h2>
     <div class="result-line"></div>
     <p class="result-msg">
       Thank you for completing the Alaric Market Research & Advisory Level 1 Assessment.<br><br>
       Your responses have been successfully submitted and recorded.<br><br>
-      <strong style="color:var(--accent-light)">
+      <strong style="color:var(--accent-light);">
         Results Will Be Announced Soon
       </strong>
     </p>
     <span class="result-ref" id="result-ref">REF: —</span>
   </div>
 </div>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-import {
-  getFirestore,
-  collection,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyB_lSMgXj01EVpxyZi1co3kyGe4CbT1l6U",
-    authDomain: "amra-assessment-portal.firebaseapp.com",
-    projectId: "amra-assessment-portal",
-    storageBucket: "amra-assessment-portal.firebasestorage.app",
-    messagingSenderId: "222903533932",
-    appId: "1:222903533932:web:b5f0867d285b062cb2f349"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-window.firebaseDB = db;
-window.firebaseFns = {
-  collection,
-  addDoc
-};
-
-
-</script>
 <script>
-//  CONFIG — replace with your Apps Script URL
+// ══════════════════════════════════════════
+//  CONFIG
 // ══════════════════════════════════════════
 const ASSESSMENT_CONFIG = {
   level: 1,
@@ -701,8 +680,11 @@ const ASSESSMENT_CONFIG = {
   totalQuestions: 25,
   durationMinutes: 30
 };
+
+// REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxjTGq6JIQFQSyu1KVdN9ziLC4k9NsCZWESic4OCPBCL-LpOGeshutNBAZkQUMFu0E/exec";
-const EXAM_DURATION_SECONDS =   ASSESSMENT_CONFIG.durationMinutes * 60; // 30 minutes
+
+const EXAM_DURATION_SECONDS = ASSESSMENT_CONFIG.durationMinutes * 60;
 
 // ══════════════════════════════════════════
 //  QUESTION BANK — 25 QUESTIONS
@@ -739,8 +721,6 @@ const QUESTIONS = [
     options: ["A small green candle followed by a smaller green candle","A small red candle followed by a larger green candle","A small green candle followed by a larger red candle that completely covers the previous candle's body","Two doji candles in a row"],
     answer: 2
   },
-
-  // SECTION 2: SUPPORT & RESISTANCE (Questions 6-9)
   {
     section: "Section 2: Support & Resistance",
     text: "Support is best defined as:",
@@ -765,8 +745,6 @@ const QUESTIONS = [
     options: ["Price breaks a level and continues moving in that direction","Price breaks a level but quickly reverses back through it","Price never reaches the level at all","Volume is completely absent during the move"],
     answer: 1
   },
-
-  // SECTION 3: TRENDS & TRENDLINES (Questions 10-13)
   {
     section: "Section 3: Trends & Trendlines",
     text: "An uptrend is defined by:",
@@ -791,8 +769,6 @@ const QUESTIONS = [
     options: ["Price touches the trendline once","A new higher high is made in a downtrend","Price breaks the trendline and makes a lower low (in uptrend) or higher high (in downtrend)","Volume drops to zero"],
     answer: 2
   },
-
-  // SECTION 4: CHART PATTERNS (Questions 14-17)
   {
     section: "Section 4: Chart Patterns",
     text: "A head and shoulders top pattern signals:",
@@ -817,8 +793,6 @@ const QUESTIONS = [
     options: ["Price touches the second bottom and reverses up","Price breaks above the resistance level (the middle peak) after forming two bottoms","Volume decreases on the breakout","Both bottoms are at different price levels"],
     answer: 1
   },
-
-  // SECTION 5: PRICE ACTION & CANDLE PATTERNS (Questions 18-21)
   {
     section: "Section 5: Price Action & Candle Patterns",
     text: "A pin bar (or long wick) that rejects a price level is most useful for:",
@@ -843,8 +817,6 @@ const QUESTIONS = [
     options: ["A long red candle at the bottom of a downtrend","A long lower wick (hammer/pin bar) after a series of down candles","A doji at the top of an uptrend","Increasing distance between price and moving average"],
     answer: 1
   },
-
-  // SECTION 6: BASIC INDICATORS & VOLUME (Questions 22-25)
   {
     section: "Section 6: Basic Indicators & Volume",
     text: "The purpose of a moving average is to:",
@@ -895,7 +867,7 @@ function shuffle(arr) {
 }
 
 // ══════════════════════════════════════════
-//  UTILITY: SHUFFLE OPTIONS FOR EACH QUESTION
+//  SHUFFLE OPTIONS FOR EACH QUESTION
 // ══════════════════════════════════════════
 function shuffleOptionsForQuestion(question) {
   const optionsWithAnswers = question.options.map((opt, idx) => ({ text: opt, originalIdx: idx }));
@@ -909,7 +881,7 @@ function shuffleOptionsForQuestion(question) {
 }
 
 // ══════════════════════════════════════════
-//  SECURITY: BASIC PROTECTIONS ONLY
+//  SECURITY PROTECTIONS
 // ══════════════════════════════════════════
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("copy", e => e.preventDefault());
@@ -932,15 +904,19 @@ document.getElementById("btn-begin").addEventListener("click", () => {
   let valid = true;
 
   if (!nameVal) {
-    document.getElementById("err-name").style.display = "block"; valid = false;
+    document.getElementById("err-name").style.display = "block";
+    valid = false;
   } else {
     document.getElementById("err-name").style.display = "none";
   }
+
   if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-    document.getElementById("err-email").style.display = "block"; valid = false;
+    document.getElementById("err-email").style.display = "block";
+    valid = false;
   } else {
     document.getElementById("err-email").style.display = "none";
   }
+
   if (!valid) return;
 
   userName  = nameVal;
@@ -1016,7 +992,10 @@ function startTimer() {
   timerInterval = setInterval(() => {
     timeLeft--;
     updateTimerDisplay();
-    if (timeLeft <= 0) { clearInterval(timerInterval); autoSubmit(); }
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      autoSubmit();
+    }
   }, 1000);
 }
 
@@ -1046,6 +1025,7 @@ document.getElementById("btn-next-form").addEventListener("click", () => {
 
 document.getElementById("btn-cancel-form").addEventListener("click", () => {
   document.getElementById("overlay-form").classList.remove("active");
+  resetFormMessages();
 });
 
 document.getElementById("btn-confirm-form").addEventListener("click", () => {
@@ -1054,8 +1034,10 @@ document.getElementById("btn-confirm-form").addEventListener("click", () => {
   const firmVal       = document.getElementById("inp-firm").value.trim();
   const dependentsVal = document.getElementById("inp-dependents").value.trim();
 
+  resetFormMessages();
+
   if (!ageVal || !expVal || !firmVal || !dependentsVal) {
-    alert("Please fill all the fields before submitting.");
+    showErrorMessage("Please fill all the fields before submitting.");
     return;
   }
 
@@ -1067,20 +1049,30 @@ document.getElementById("btn-confirm-form").addEventListener("click", () => {
   doSubmit(false);
 });
 
+function resetFormMessages() {
+  document.getElementById("success-msg").style.display = "none";
+  document.getElementById("error-msg-submission").style.display = "none";
+}
+
+function showSuccessMessage(msg) {
+  const successEl = document.getElementById("success-msg");
+  successEl.textContent = msg;
+  successEl.style.display = "block";
+}
+
+function showErrorMessage(msg) {
+  const errorEl = document.getElementById("error-msg-submission");
+  errorEl.textContent = msg;
+  errorEl.style.display = "block";
+}
+
 // ══════════════════════════════════════════
-//  SUBMISSION
+//  SUBMISSION WITH PROPER ERROR HANDLING
 // ══════════════════════════════════════════
 async function doSubmit(isAutoSubmit) {
   if (submitted) return;
   submitted = true;
   clearInterval(timerInterval);
-
-  document.getElementById("overlay-form").classList.remove("active");
-  const btn = document.getElementById("btn-next-form");
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span>Submitting…';
-  }
 
   const keys = ["A","B","C","D"];
   let score = 0;
@@ -1109,7 +1101,7 @@ async function doSubmit(isAutoSubmit) {
     firmName:        userFirm,
     dependents:      userDependents,
     score:           score,
-    totalQuestions:           shuffledQuestions.length,
+    totalQuestions:  shuffledQuestions.length,
     percentage:      ((score / shuffledQuestions.length) * 100).toFixed(1),
     autoSubmit:      isAutoSubmit,
     referenceId:     refId,
@@ -1117,32 +1109,39 @@ async function doSubmit(isAutoSubmit) {
     detailedAnswers: JSON.stringify(detailedAnswers)
   };
 
- try {
+  // Show success message
+  showSuccessMessage("✓ Submitting your assessment...");
 
-  await window.firebaseFns.addDoc(
-    window.firebaseFns.collection(
-      window.firebaseDB,
-      "assessment_results"
-    ),
-    payload
-  );
+  try {
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
 
-  console.log("Assessment Saved");
-   await fetch(APPS_SCRIPT_URL, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(payload)
-});
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
 
-} catch (err) {
+    const result = await response.json();
+    console.log("✓ Assessment submitted successfully", result);
 
-  console.error("Firebase Error:", err);
+    // Delay before showing result
+    setTimeout(() => {
+      showResult(refId);
+    }, 800);
 
-}
+  } catch (error) {
+    console.error("❌ Submission error:", error);
+    showErrorMessage(`Submission failed: ${error.message}. Please try again.`);
+    submitted = false;
 
-  showResult(refId);
+    // Re-enable submit button
+    const confirmBtn = document.getElementById("btn-confirm-form");
+    confirmBtn.disabled = false;
+  }
 }
 
 // ══════════════════════════════════════════
@@ -1150,6 +1149,7 @@ async function doSubmit(isAutoSubmit) {
 // ══════════════════════════════════════════
 function showResult(refId) {
   document.getElementById("exam").classList.remove("active");
+  document.getElementById("overlay-form").classList.remove("active");
   document.getElementById("result").classList.add("active");
   document.getElementById("result-ref").textContent = `REF: ${refId}`;
 }
