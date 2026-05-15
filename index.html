@@ -668,7 +668,9 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
-  getFirestore
+  getFirestore,
+  collection,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -684,6 +686,10 @@ import {
   const db = getFirestore(app);
 
 window.firebaseDB = db;
+window.firebaseFns = {
+  collection,
+  addDoc
+};
 
   alert("Firebase Connected");
 </script>
