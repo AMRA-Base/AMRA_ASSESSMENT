@@ -1116,13 +1116,14 @@ async function doSubmit(isAutoSubmit) {
 
   try {
     console.log("🔄 Sending fetch request...");
-    const response = await fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+    await fetch(APPS_SCRIPT_URL, {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(payload)
+});
+
+console.log("Submitted successfully");
+showResult(refId);
 
     console.log("📨 Response received. Status:", response.status);
 
@@ -1132,8 +1133,8 @@ async function doSubmit(isAutoSubmit) {
       throw new Error(`Server error (${response.status}): ${response.statusText}`);
     }
 
-    const result = await response.json();
-    console.log("✓ Assessment submitted successfully", result);
+    console.log("Submitted"); showResult(refId);
+    
 
     // Delay before showing result
     setTimeout(() => {
