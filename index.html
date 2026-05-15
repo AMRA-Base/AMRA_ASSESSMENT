@@ -667,6 +667,10 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
+import {
+  getFirestore
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
   const firebaseConfig = {
     apiKey: "AIzaSyB_lSMgXj01EVpxyZi1co3kyGe4CbT1l6U",
     authDomain: "amra-assessment-portal.firebaseapp.com",
@@ -677,6 +681,9 @@
   };
 
   const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+window.firebaseDB = db;
 
   alert("Firebase Connected");
 </script>
