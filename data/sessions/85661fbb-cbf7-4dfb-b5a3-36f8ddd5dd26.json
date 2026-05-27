@@ -1,0 +1,440 @@
+{
+  "session_id": "85661fbb-cbf7-4dfb-b5a3-36f8ddd5dd26",
+  "level": "1",
+  "seed": 1408561111,
+  "created_at": "2026-05-27T13:51:04.272125+00:00",
+  "status": "pending",
+  "pass_threshold": 0.7,
+  "total_questions": 25,
+  "draw": [
+    {
+      "position": 1,
+      "stable_id": "L1-NEW-Q024",
+      "topic": "Technical_Concepts",
+      "sub_topic": "basic_indicators",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "Price makes a new swing high that is higher than the previous swing high. At the same time, the RSI reading at the new swing high is lower than the RSI reading at the previous swing high. What does this relationship between price and RSI most likely indicate?",
+      "options": [
+        "Bearish divergence — upward momentum is weakening even as price reaches new highs",
+        "The RSI reading confirms the strength of the upward move — higher price with any RSI level is bullish",
+        "The RSI is in overbought territory, which always signals an immediate reversal",
+        "The lower RSI reading has no significance when price is making new highs"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 2,
+      "stable_id": "L1-S6-Q003",
+      "topic": "Technical_Concepts",
+      "sub_topic": "risk_reward",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A common risk management rule is to risk:",
+      "options": [
+        "1-2% of account per trade",
+        "50% of account per trade",
+        "10-20% of account per trade",
+        "All of the account"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 3,
+      "stable_id": "L1-NEW-Q023",
+      "topic": "Chart_Patterns",
+      "sub_topic": "continuation_patterns",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "Price makes a sharp downward move across several sessions. It then forms a narrow upward-sloping channel of smaller candles that retrace a portion of the decline. Price then breaks below the lower boundary of that channel. What does this breakdown most likely signal?",
+      "options": [
+        "A failure of the continuation pattern — further analysis is required before acting",
+        "A resumption of the prior downward move",
+        "A period of consolidation with no directional resolution",
+        "A reversal of the prior downward move — the pattern indicates buyers are regaining control"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 4,
+      "stable_id": "L1-S4-Q018",
+      "topic": "Chart_Patterns",
+      "sub_topic": "reversal_patterns",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A triple bottom pattern signals:",
+      "options": [
+        "Bullish reversal with three troughs at similar levels",
+        "Sideways market only",
+        "Continuation",
+        "Bearish reversal"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 5,
+      "stable_id": "L1-S4-Q080",
+      "topic": "Chart_Patterns",
+      "sub_topic": "pattern_failure",
+      "difficulty": "intermediate",
+      "question_type": "conceptual",
+      "question": "A \"pattern failure\" that reverses can become:",
+      "options": [
+        "No signal at all",
+        "An even stronger signal in the opposite direction",
+        "Always a false signal",
+        "A continuation signal"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 6,
+      "stable_id": "L1-S4-Q026",
+      "topic": "Chart_Patterns",
+      "sub_topic": "bilateral_patterns",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "The direction of a symmetrical triangle breakout is often:",
+      "options": [
+        "Random",
+        "Always down",
+        "Opposite to the prior trend",
+        "In the direction of the prior trend"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 7,
+      "stable_id": "L1-NEW-Q007",
+      "topic": "Price_Action",
+      "sub_topic": "breakout_breakdown",
+      "difficulty": "intermediate",
+      "question_type": "chart",
+      "question": "Price closes above a resistance level that had held for several sessions. On the following session, price closes back below that same resistance level. What does this two-session sequence describe?",
+      "options": [
+        "A failed breakout",
+        "A confirmed breakout",
+        "A trend reversal",
+        "A retest of support"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 8,
+      "stable_id": "L1-NEW-Q028",
+      "topic": "Price_Action",
+      "sub_topic": "price_behavior",
+      "difficulty": "beginner",
+      "question_type": "situational",
+      "question": "A price chart shows several consecutive sessions where candle bodies are consistently small, upper and lower wicks are approximately equal in length, and the overall price range is narrowing compared to prior sessions. No clear direction is present in the sequence. What does this candle pattern describe?",
+      "options": [
+        "Price consolidation — a period of reduced volatility with no established directional bias",
+        "A reversal pattern — the decreasing range confirms the prior trend has ended",
+        "A flag pattern — the narrow candles indicate a pause before the prior trend resumes",
+        "Expanding momentum — small bodies with equal wicks indicate an imminent breakout in both directions"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 9,
+      "stable_id": "L1-S5-Q060",
+      "topic": "Price_Action",
+      "sub_topic": "momentum",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A \"seller's exhaustion\" is shown by:",
+      "options": [
+        "Doji at highs",
+        "Long lower wicks, small real bodies at lows",
+        "Long upper wicks at highs",
+        "Marubozu candles down"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 10,
+      "stable_id": "L1-S5-Q013",
+      "topic": "Price_Action",
+      "sub_topic": "volume_price",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "Volume precedes price means:",
+      "options": [
+        "Volume changes often happen before price changes",
+        "Price changes always happen before volume",
+        "Volume and price change simultaneously",
+        "There is no relationship"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 11,
+      "stable_id": "L1-NEW-Q037",
+      "topic": "Candlesticks",
+      "sub_topic": "multi_candle_reversal",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "During an uptrend, price reaches a region where a significant prior daily swing high exists. Over three sessions, the following sequence forms: Session 1 — a large bullish candle extending strongly into the resistance region. Session 2 — a small candle whose body is less than 30% of Session 1's body, with wicks in both directions. Session 3 — a large bearish candle that opens below the Session 2 close and closes at least 50% into the body of the Session 1 bullish candle. What does this three-session sequence at the resistance region most likely describe?",
+      "options": [
+        "A double top forming — the small Session 2 candle represents the second peak, with the Session 3 decline confirming the top",
+        "An evening star pattern — a three-candle topping structure at resistance signaling a potential reversal of the uptrend",
+        "A gap-fill scenario — the Session 2 indecision defines the consolidation target before the uptrend resumes from that level",
+        "A bullish continuation — a small indecision candle between two large candles confirms the uptrend's strength before the advance resumes"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 12,
+      "stable_id": "L1-NEW-Q015",
+      "topic": "Candlesticks",
+      "sub_topic": "single_candle_reversal",
+      "difficulty": "beginner",
+      "question_type": "chart",
+      "question": "A candle has a small body positioned near its low, with a wick above the body that is at least twice the length of the body. What type of candle is this?",
+      "options": [
+        "A doji",
+        "An engulfing candle",
+        "A hammer",
+        "A shooting star"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 13,
+      "stable_id": "L1-S1-Q032",
+      "topic": "Candlesticks",
+      "sub_topic": "single_candle_indecision",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A long-legged doji indicates:",
+      "options": [
+        "Strong trend continuation",
+        "A guaranteed reversal",
+        "Low volatility",
+        "Extreme indecision with both buyers and sellers active"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 14,
+      "stable_id": "L1-S1-Q042",
+      "topic": "Candlesticks",
+      "sub_topic": "gap_types",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A downside gap (gap down) occurs when:",
+      "options": [
+        "The low of the current candle is higher than the high of the previous candle",
+        "There is no trading",
+        "The high of the current candle is lower than the low of the previous candle",
+        "The open equals the previous close"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 15,
+      "stable_id": "L1-S1-Q048",
+      "topic": "Candlesticks",
+      "sub_topic": "candle_anatomy",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "The reliability of a candlestick pattern is highest when:",
+      "options": [
+        "It appears randomly in a flat market",
+        "It appears at a key support or resistance level with volume confirmation",
+        "It contradicts the trend",
+        "Volume is declining"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 16,
+      "stable_id": "L1-NEW-Q031",
+      "topic": "Support_Resistance",
+      "sub_topic": "retest_confirmation",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "After holding below a resistance level at 1.3500 for eight months, EUR/USD breaks above it with three consecutive daily closes above 1.3500 and rallies to 1.3650. Price then pulls back toward 1.3500. On the retest, two consecutive daily sessions close at 1.3490 and 1.3485 — both below 1.3500 — before price continues lower. What does the retest behavior most likely indicate?",
+      "options": [
+        "The retest confirms the breakout — minor closes below a breakout level are expected noise and do not invalidate the move",
+        "The level has become permanently neutral — price oscillating around 1.3500 means no directional conclusion can be drawn",
+        "A double bottom is forming at 1.3490 — the two closes below the level represent accumulation before a new upward move",
+        "The breakout has failed — consecutive closes below the former resistance on the retest indicate the level has not converted to support, invalidating the bullish thesis"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 17,
+      "stable_id": "L1-S2-Q050",
+      "topic": "Support_Resistance",
+      "sub_topic": "role_reversal",
+      "difficulty": "intermediate",
+      "question_type": "conceptual",
+      "question": "A \"pullback\" to a broken resistance (now support) is considered:",
+      "options": [
+        "A high-risk short entry",
+        "An exit signal",
+        "A reversal confirmation",
+        "A low-risk buy entry (in an uptrend)"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 18,
+      "stable_id": "L1-S2-Q067",
+      "topic": "Support_Resistance",
+      "sub_topic": "basic_levels",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "\"Previous month's low\" often acts as:",
+      "options": [
+        "Resistance for the current month",
+        "Only relevant for weekly charts",
+        "Support for the current month",
+        "Never relevant"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 19,
+      "stable_id": "L1-S2-Q097",
+      "topic": "Support_Resistance",
+      "sub_topic": "breakout",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "The \"opening range breakout\" (ORB) strategy uses:",
+      "options": [
+        "The first hour's high and low as support/resistance",
+        "The 200-day moving average",
+        "The previous close",
+        "The entire day's range"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 20,
+      "stable_id": "L1-S2-Q018",
+      "topic": "Support_Resistance",
+      "sub_topic": "zone_behavior",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "Confluence increases the:",
+      "options": [
+        "Spreads on the instrument",
+        "Likelihood of a random move",
+        "Probability of a level holding or breaking with significance",
+        "Volatility of the asset"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 21,
+      "stable_id": "L1-NEW-Q006",
+      "topic": "Trend_Structure",
+      "sub_topic": "hh_hl_ll_lh",
+      "difficulty": "beginner",
+      "question_type": "chart",
+      "question": "A chart shows three consecutive swing highs. Each swing high is lower than the one before it. What does this sequence of swing highs describe?",
+      "options": [
+        "A series of higher lows",
+        "A series of lower highs",
+        "A series of equal highs",
+        "A series of higher highs"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 22,
+      "stable_id": "L1-NEW-Q025",
+      "topic": "Trend_Structure",
+      "sub_topic": "trend_reversal",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "Price has been making higher highs and higher lows for an extended period. It then forms a swing high that is lower than the prior swing high. On the following move, price closes below the most recent prior swing low. What does this two-event sequence most likely signal?",
+      "options": [
+        "A double bottom pattern indicating the uptrend will accelerate",
+        "A consolidation phase — the sequence is insufficient to determine trend direction",
+        "A temporary pullback within the uptrend — the prior structure remains intact",
+        "A potential structural shift from uptrend to downtrend"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 23,
+      "stable_id": "L1-NEW-Q038",
+      "topic": "Trend_Structure",
+      "sub_topic": "trend_continuation",
+      "difficulty": "intermediate",
+      "question_type": "situational",
+      "question": "A stock completes a four-week uptrend on progressively increasing volume. It then enters a corrective phase: price retraces 38% of the prior rally over six weeks, volume during the correction consistently exceeds the average volume recorded during the uptrend, and the RSI never recovers above 50 during any intra-correction bounce. Which assessment is most consistent with trend continuation analysis?",
+      "options": [
+        "The volume expansion and sub-50 RSI throughout the correction indicate bearish distribution — continuation of the prior uptrend is at risk",
+        "The time-ratio violation — correction lasting longer than the impulse — is the sole signal required to classify this as a trend reversal",
+        "Volume and momentum oscillators during corrective phases are secondary factors; the 38% retracement alone determines whether trend continuation is likely",
+        "A 38% retracement is within acceptable structural limits; the extended duration and heavier volume confirm the trend is pausing healthily before continuation"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 24,
+      "stable_id": "L1-S3-Q050",
+      "topic": "Trend_Structure",
+      "sub_topic": "moving_averages",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A \"flat\" moving average indicates:",
+      "options": [
+        "Strong uptrend",
+        "Sideways or trendless market",
+        "High volatility",
+        "Strong downtrend"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    },
+    {
+      "position": 25,
+      "stable_id": "L1-S3-Q007",
+      "topic": "Trend_Structure",
+      "sub_topic": "trend_definition",
+      "difficulty": "beginner",
+      "question_type": "conceptual",
+      "question": "A \"line\" in Dow Theory is a:",
+      "options": [
+        "Upward sloping trendline",
+        "Steep acceleration",
+        "Sideways consolidation or trading range",
+        "Downward sloping trendline"
+      ],
+      "user_answer": null,
+      "is_correct": null
+    }
+  ],
+  "answered": 0,
+  "score": null,
+  "score_pct": null,
+  "pass_fail": null
+}
