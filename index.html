@@ -1390,10 +1390,8 @@
           if (result.error) throw new Error(result.error);
           sessionId = result.session_id;
         } else {
-          // Offline mode: read session_id from ?session= param
-          sessionId = params.get("session");
-          if (!sessionId)
-            throw new Error("No session ID in URL — use ?session=<uuid>");
+          // Offline mode: use ?session= param or fall back to default Level 1 session
+          sessionId = params.get("session") || "69969ee5-bdb5-4ce0-856b-b1f65b29c88f";
         }
 
         const resp = await fetch(`${SESSION_BASE_URL}${sessionId}.json`);
