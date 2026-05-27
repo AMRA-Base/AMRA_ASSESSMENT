@@ -1,1170 +1,1697 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Alaric Market Research & Advisory — Level 1 Entrance Assessment</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --navy:         #0F1D3A;
-    --navy-mid:     #162040;
-    --navy-light:   #1E2D52;
-    --navy-card:    #192448;
-    --accent:       #F5820A;
-    --accent-light: #FF9D38;
-    --accent-dim:   #B5600A;
-    --blue-bold:    #1B3A8C;
-    --white:        #FFFFFF;
-    --white-soft:   #EEF2FF;
-    --white-dim:    #A8BBDD;
-    --danger:       #E05252;
-    --success:      #34D399;
-    --warning:      #FBBF24;
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Alaric Market Research & Advisory — Level 1 Entrance Assessment
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0f1d3a;
+        --navy-mid: #162040;
+        --navy-light: #1e2d52;
+        --navy-card: #192448;
+        --accent: #f5820a;
+        --accent-light: #ff9d38;
+        --accent-dim: #b5600a;
+        --blue-bold: #1b3a8c;
+        --white: #ffffff;
+        --white-soft: #eef2ff;
+        --white-dim: #a8bbdd;
+        --danger: #e05252;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  html, body {
-    height: 100%;
-    margin: 0;
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-direction: column;
-  }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--navy);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
 
-  /* Subtle grid texture */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none; z-index: 0;
-  }
+      /* Subtle grid texture */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 0;
+      }
 
-  /* Orange top bar */
-  body::after {
-    content: '';
-    position: fixed; top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--blue-bold), var(--accent), var(--accent-light));
-    z-index: 1000;
-  }
+      /* Orange top bar */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--blue-bold),
+          var(--accent),
+          var(--accent-light)
+        );
+        z-index: 1000;
+      }
 
-  /* ══ SPLASH ══════════════════════════════════ */
-  #splash {
-    position: fixed; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 200;
-    background: radial-gradient(ellipse at 60% 40%, #1E2D52 0%, #0F1D3A 70%);
-    transition: opacity 0.7s ease, visibility 0.7s ease;
-    padding: 20px;
-  }
-  #splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+      /* ══ SPLASH ══════════════════════════════════ */
+      #splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 200;
+        background: radial-gradient(
+          ellipse at 60% 40%,
+          #1e2d52 0%,
+          #0f1d3a 70%
+        );
+        transition:
+          opacity 0.7s ease,
+          visibility 0.7s ease;
+        padding: 20px;
+      }
+      #splash.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-  .splash-inner {
-    width: 100%;
-    max-width: 520px;
-    animation: fadeUp 0.8s ease both;
-  }
+      .splash-inner {
+        width: 100%;
+        max-width: 520px;
+        animation: fadeUp 0.8s ease both;
+      }
 
-  .brand-block { text-align: center; margin-bottom: 36px; }
+      .brand-block {
+        text-align: center;
+        margin-bottom: 36px;
+      }
 
-  .brand-logo-img {
-    max-width: 320px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 24px;
-    filter: drop-shadow(0 4px 24px rgba(245,130,10,0.18));
-  }
+      .brand-logo-img {
+        max-width: 320px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 24px;
+        filter: drop-shadow(0 4px 24px rgba(245, 130, 10, 0.18));
+      }
 
-  .splash-tagline {
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--white-dim);
-    margin-bottom: 6px;
-  }
+      .splash-tagline {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--white-dim);
+        margin-bottom: 6px;
+      }
 
-  .splash-level {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 8px;
-    background: rgba(255,157,56,0.1);
-    padding: 6px 12px;
-    border-radius: 3px;
-    display: inline-block;
-    border: 1px solid rgba(255,157,56,0.3);
-  }
+      .splash-level {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--accent-light);
+        margin-bottom: 8px;
+        background: rgba(255, 157, 56, 0.1);
+        padding: 6px 12px;
+        border-radius: 3px;
+        display: inline-block;
+        border: 1px solid rgba(255, 157, 56, 0.3);
+      }
 
-  .splash-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 600;
-    color: var(--white-soft);
-    letter-spacing: 0.04em;
-  }
+      .splash-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--white-soft);
+        letter-spacing: 0.04em;
+      }
 
-  .splash-divider {
-    display: flex; align-items: center; gap: 12px;
-    margin: 24px 0;
-  }
-  .splash-divider::before,
-  .splash-divider::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(245,130,10,0.4));
-  }
-  .splash-divider::after {
-    background: linear-gradient(90deg, rgba(245,130,10,0.4), transparent);
-  }
-  .splash-divider span {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+      .splash-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0;
+      }
+      .splash-divider::before,
+      .splash-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(245, 130, 10, 0.4)
+        );
+      }
+      .splash-divider::after {
+        background: linear-gradient(
+          90deg,
+          rgba(245, 130, 10, 0.4),
+          transparent
+        );
+      }
+      .splash-divider span {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
 
-  .form-card {
-    background: rgba(25,36,72,0.85);
-    border: 1px solid rgba(245,130,10,0.25);
-    border-radius: 8px;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
-  }
-  .form-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--blue-bold), var(--accent), var(--accent-light));
-  }
+      .form-card {
+        background: rgba(25, 36, 72, 0.85);
+        border: 1px solid rgba(245, 130, 10, 0.25);
+        border-radius: 8px;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+      }
+      .form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--blue-bold),
+          var(--accent),
+          var(--accent-light)
+        );
+      }
 
-  .form-group { margin-bottom: 22px; }
-  .form-group label {
-    display: block;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 9px;
-  }
-  .form-group input {
-    width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 5px;
-    padding: 13px 16px;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px; outline: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .form-group input:focus {
-    border-color: var(--accent);
-    background: rgba(245,130,10,0.07);
-  }
-  .form-group input::placeholder { color: rgba(168,187,221,0.5); }
+      .form-group {
+        margin-bottom: 22px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 9px;
+      }
+      .form-group input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
+        padding: 13px 16px;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .form-group input:focus {
+        border-color: var(--accent);
+        background: rgba(245, 130, 10, 0.07);
+      }
+      .form-group input::placeholder {
+        color: rgba(168, 187, 221, 0.5);
+      }
 
-  .form-notice {
-    font-size: 11.5px; color: var(--white-dim);
-    text-align: center; margin-bottom: 26px; line-height: 1.75;
-    background: rgba(255,255,255,0.04);
-    border-radius: 4px; padding: 12px 16px;
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .form-notice strong { color: var(--accent-light); font-weight: 600; }
+      .form-notice {
+        font-size: 11.5px;
+        color: var(--white-dim);
+        text-align: center;
+        margin-bottom: 26px;
+        line-height: 1.75;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 4px;
+        padding: 12px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .form-notice strong {
+        color: var(--accent-light);
+        font-weight: 600;
+      }
 
-  .btn-primary {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-light));
-    color: #fff;
-    border: none; border-radius: 5px;
-    padding: 15px 24px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    box-shadow: 0 4px 20px rgba(245,130,10,0.35);
-  }
-  .btn-primary:hover { opacity: 0.9; }
-  .btn-primary:active { transform: scale(0.99); }
-  .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+      .btn-primary {
+        width: 100%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 15px 24px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          opacity 0.2s,
+          transform 0.1s;
+        box-shadow: 0 4px 20px rgba(245, 130, 10, 0.35);
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+      }
+      .btn-primary:active {
+        transform: scale(0.99);
+      }
+      .btn-primary:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
 
-  .error-msg {
-    font-size: 12px; color: var(--danger);
-    margin-top: 6px; display: none;
-  }
+      .error-msg {
+        font-size: 12px;
+        color: var(--danger);
+        margin-top: 6px;
+        display: none;
+      }
 
-  /* ══ EXAM SCREEN ═══════════════════════════════ */
-  #exam { display: none; min-height: 100vh; }
-  #exam.active { display: block; }
+      /* ══ EXAM SCREEN ═══════════════════════════════ */
+      #exam {
+        display: none;
+      }
+      #exam.active {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: auto;
+      }
 
-  .exam-header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(15,29,58,0.97);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(245,130,10,0.2);
-    padding: 0 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-  }
+      .exam-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(15, 29, 58, 0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(245, 130, 10, 0.2);
+        padding: 0 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      }
 
-  .header-brand { display: flex; align-items: center; }
-  .header-logo-img { height: 40px; width: auto; }
+      .header-brand {
+        display: flex;
+        align-items: center;
+      }
+      .header-logo-img {
+        height: 40px;
+        width: auto;
+      }
 
-  .header-meta { display: flex; align-items: center; gap: 36px; }
+      .header-meta {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
 
-  .timer-block { display: flex; align-items: center; gap: 12px; }
-  .timer-label {
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--white-dim);
-  }
-  .timer-display {
-    font-family: 'DM Mono', monospace;
-    font-size: 24px; font-weight: 500;
-    color: var(--accent-light);
-    transition: color 0.3s;
-    text-shadow: 0 0 20px rgba(245,130,10,0.4);
-  }
-  .timer-display.warning { color: var(--warning); text-shadow: 0 0 20px rgba(251,191,36,0.4); }
-  .timer-display.critical { color: var(--danger); animation: pulse 1s infinite; text-shadow: 0 0 20px rgba(224,82,82,0.5); }
+      .timer-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .timer-label {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--white-dim);
+      }
+      .timer-display {
+        font-family: "DM Mono", monospace;
+        font-size: 24px;
+        font-weight: 500;
+        color: var(--accent-light);
+        transition: color 0.3s;
+        text-shadow: 0 0 20px rgba(245, 130, 10, 0.4);
+      }
+      .timer-display.warning {
+        color: var(--warning);
+        text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+      }
+      .timer-display.critical {
+        color: var(--danger);
+        animation: pulse 1s infinite;
+        text-shadow: 0 0 20px rgba(224, 82, 82, 0.5);
+      }
 
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
 
-  .progress-block { text-align: right; }
-  .progress-label {
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--white-dim);
-    margin-bottom: 6px;
-  }
-  .progress-bar-wrap {
-    width: 150px; height: 5px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px; overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 3px;
-    transition: width 0.4s ease;
-    width: 0%;
-  }
-  .progress-count {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; color: var(--white-dim);
-    margin-top: 5px;
-  }
+      .progress-block {
+        text-align: right;
+      }
+      .progress-label {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--white-dim);
+        margin-bottom: 6px;
+      }
+      .progress-bar-wrap {
+        width: 150px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        border-radius: 3px;
+        transition: width 0.4s ease;
+        width: 0%;
+      }
+      .progress-count {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        color: var(--white-dim);
+        margin-top: 5px;
+      }
 
-  /* ══ EXAM BODY ══════════════════════════ */
-  .exam-body {
-    max-width: 880px; margin: 0 auto;
-    padding: 52px 40px 90px;
-    width: 100%;
-  }
+      /* ══ EXAM BODY ══════════════════════════ */
+      .exam-body {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 52px 40px 90px;
+        width: 100%;
+      }
 
-  .section-divider {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 28px; margin-top: 52px;
-  }
-  .section-divider:first-child { margin-top: 0; }
-  .section-divider .line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, rgba(245,130,10,0.4), transparent);
-  }
-  .section-divider .line.right {
-    background: linear-gradient(90deg, transparent, rgba(245,130,10,0.4));
-  }
-  .section-tag {
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--accent); white-space: nowrap;
-    padding: 5px 14px;
-    border: 1px solid rgba(245,130,10,0.4);
-    border-radius: 3px;
-    background: rgba(245,130,10,0.06);
-  }
+      .section-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+        margin-top: 52px;
+      }
+      .section-divider:first-child {
+        margin-top: 0;
+      }
+      .section-divider .line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(245, 130, 10, 0.4),
+          transparent
+        );
+      }
+      .section-divider .line.right {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(245, 130, 10, 0.4)
+        );
+      }
+      .section-tag {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--accent);
+        white-space: nowrap;
+        padding: 5px 14px;
+        border: 1px solid rgba(245, 130, 10, 0.4);
+        border-radius: 3px;
+        background: rgba(245, 130, 10, 0.06);
+      }
 
-  /* ══ QUESTION CARD ══════════════════════ */
-  .question-card {
-    background: var(--navy-card);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 28px 32px;
-    margin-bottom: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    position: relative;
-  }
-  .question-card:hover {
-    border-color: rgba(245,130,10,0.25);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-  }
-  .question-card.answered {
-    border-color: rgba(245,130,10,0.45);
-    box-shadow: 0 4px 24px rgba(245,130,10,0.08);
-  }
-  .question-card.answered::before {
-    content: '✓';
-    position: absolute; top: 14px; right: 16px;
-    font-size: 13px; color: var(--accent);
-    font-weight: 700;
-  }
+      /* ══ QUESTION CARD ══════════════════════ */
+      .question-card {
+        background: var(--navy-card);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 28px 32px;
+        margin-bottom: 14px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+      }
+      .question-card:hover {
+        border-color: rgba(245, 130, 10, 0.25);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+      }
+      .question-card.answered {
+        border-color: rgba(245, 130, 10, 0.45);
+        box-shadow: 0 4px 24px rgba(245, 130, 10, 0.08);
+      }
+      .question-card.answered::before {
+        content: "✓";
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        font-size: 13px;
+        color: var(--accent);
+        font-weight: 700;
+      }
 
-  .q-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--accent-dim); letter-spacing: 0.12em;
-    margin-bottom: 10px;
-  }
-  .q-text {
-    font-size: 15.5px; color: var(--white-soft);
-    margin-bottom: 20px; line-height: 1.65; font-weight: 400;
-  }
+      .q-number {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--accent-dim);
+        letter-spacing: 0.12em;
+        margin-bottom: 10px;
+      }
+      .q-text {
+        font-size: 15.5px;
+        color: var(--white-soft);
+        margin-bottom: 20px;
+        line-height: 1.65;
+        font-weight: 400;
+      }
 
-  .options-grid { display: flex; flex-direction: column; gap: 9px; }
+      .options-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
 
-  .option-label {
-    display: flex; align-items: flex-start; gap: 14px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 5px;
-    padding: 12px 16px;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .option-label:hover {
-    background: rgba(245,130,10,0.08);
-    border-color: rgba(245,130,10,0.35);
-  }
-  .option-label input[type="radio"] { display: none; }
-  .option-label.selected {
-    background: rgba(245,130,10,0.13);
-    border-color: var(--accent);
-  }
+      .option-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 5px;
+        padding: 12px 16px;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .option-label:hover {
+        background: rgba(245, 130, 10, 0.08);
+        border-color: rgba(245, 130, 10, 0.35);
+      }
+      .option-label input[type="radio"] {
+        display: none;
+      }
+      .option-label.selected {
+        background: rgba(245, 130, 10, 0.13);
+        border-color: var(--accent);
+      }
 
-  .option-key {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    border: 1.5px solid rgba(245,130,10,0.4);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 600;
-    color: var(--accent-dim);
-    transition: all 0.15s;
-  }
-  .option-label.selected .option-key {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-  .option-text {
-    font-size: 14px; color: var(--white-dim);
-    line-height: 1.55; padding-top: 4px;
-  }
-  .option-label.selected .option-text { color: var(--white); }
+      .option-key {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border: 1.5px solid rgba(245, 130, 10, 0.4);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--accent-dim);
+        transition: all 0.15s;
+      }
+      .option-label.selected .option-key {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .option-text {
+        font-size: 14px;
+        color: var(--white-dim);
+        line-height: 1.55;
+        padding-top: 4px;
+      }
+      .option-label.selected .option-text {
+        color: var(--white);
+      }
 
-  /* ══ SUBMIT BAR ══════════════════════════ */
-  .submit-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(15,29,58,0.98);
-    border-top: 1px solid rgba(245,130,10,0.2);
-    backdrop-filter: blur(16px);
-    padding: 16px 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    z-index: 100;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
-  }
-  .submit-info { font-size: 13px; color: var(--white-dim); }
-  .submit-info strong { color: var(--white); }
-  .submit-info span { color: var(--accent-light); }
+      /* ══ SUBMIT BAR ══════════════════════════ */
+      .submit-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 29, 58, 0.98);
+        border-top: 1px solid rgba(245, 130, 10, 0.2);
+        backdrop-filter: blur(16px);
+        padding: 16px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 100;
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.3);
+      }
+      .submit-info {
+        font-size: 13px;
+        color: var(--white-dim);
+      }
+      .submit-info strong {
+        color: var(--white);
+      }
+      .submit-info span {
+        color: var(--accent-light);
+      }
 
-  .btn-submit {
-    background: transparent;
-    border: 1.5px solid var(--accent);
-    color: var(--accent);
-    border-radius: 5px;
-    padding: 12px 40px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-submit:hover {
-    background: var(--accent);
-    color: #fff;
-    box-shadow: 0 4px 20px rgba(245,130,10,0.4);
-  }
-  .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+      .btn-submit {
+        background: transparent;
+        border: 1.5px solid var(--accent);
+        color: var(--accent);
+        border-radius: 5px;
+        padding: 12px 40px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-submit:hover {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 4px 20px rgba(245, 130, 10, 0.4);
+      }
+      .btn-submit:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
 
-  /* ══ RESULT ══════════════════════════════ */
-  #result {
-    display: none; position: fixed; inset: 0;
-    background: radial-gradient(ellipse at 60% 40%, #1E2D52 0%, #0F1D3A 70%);
-    align-items: center; justify-content: center;
-    z-index: 300;
-    padding: 20px;
-  }
-  #result.active { display: flex; }
+      /* ══ RESULT ══════════════════════════════ */
+      #result {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 60% 40%,
+          #1e2d52 0%,
+          #0f1d3a 70%
+        );
+        align-items: center;
+        justify-content: center;
+        z-index: 300;
+        padding: 20px;
+      }
+      #result.active {
+        display: flex;
+      }
 
-  .result-inner {
-    text-align: center; width: 100%;
-    max-width: 500px;
-    animation: fadeUp 0.8s ease both;
-    padding: 48px 40px;
-    background: rgba(25,36,72,0.7);
-    border: 1px solid rgba(245,130,10,0.2);
-    border-radius: 12px;
-    backdrop-filter: blur(12px);
-  }
-  .result-logo {
-    height: 64px; width: auto;
-    margin: 0 auto 32px; display: block;
-    filter: drop-shadow(0 4px 16px rgba(245,130,10,0.2));
-  }
-  .result-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px; font-weight: 600;
-    color: var(--white); margin-bottom: 14px;
-    letter-spacing: 0.02em;
-  }
-  .result-line {
-    width: 56px; height: 3px;
-    background: linear-gradient(90deg, var(--blue-bold), var(--accent));
-    margin: 0 auto 24px; border-radius: 2px;
-  }
-  .result-msg {
-    font-size: 15px; color: var(--white-dim);
-    line-height: 1.85; margin-bottom: 36px;
-  }
-  .result-ref {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--accent-dim);
-    letter-spacing: 0.12em;
-    border: 1px solid rgba(245,130,10,0.25);
-    padding: 9px 22px; border-radius: 4px;
-    background: rgba(245,130,10,0.05);
-  }
+      .result-inner {
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+        animation: fadeUp 0.8s ease both;
+        padding: 48px 40px;
+        background: rgba(25, 36, 72, 0.7);
+        border: 1px solid rgba(245, 130, 10, 0.2);
+        border-radius: 12px;
+        backdrop-filter: blur(12px);
+      }
+      .result-logo {
+        height: 64px;
+        width: auto;
+        margin: 0 auto 32px;
+        display: block;
+        filter: drop-shadow(0 4px 16px rgba(245, 130, 10, 0.2));
+      }
+      .result-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 34px;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      }
+      .result-line {
+        width: 56px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue-bold), var(--accent));
+        margin: 0 auto 24px;
+        border-radius: 2px;
+      }
+      .result-msg {
+        font-size: 15px;
+        color: var(--white-dim);
+        line-height: 1.85;
+        margin-bottom: 36px;
+      }
+      .result-ref {
+        display: inline-block;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--accent-dim);
+        letter-spacing: 0.12em;
+        border: 1px solid rgba(245, 130, 10, 0.25);
+        padding: 9px 22px;
+        border-radius: 4px;
+        background: rgba(245, 130, 10, 0.05);
+      }
 
-  /* ══ DIALOG / OVERLAYS ═══════════════════ */
-  .overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(8px);
-    z-index: 400;
-    display: none; align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .overlay.active { display: flex; }
+      /* ══ DIALOG / OVERLAYS ═══════════════════ */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+        z-index: 400;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .overlay.active {
+        display: flex;
+      }
 
-  .dialog {
-    background: var(--navy-mid);
-    border: 1px solid rgba(245,130,10,0.3);
-    border-radius: 8px;
-    padding: 44px; width: 100%;
-    max-width: 440px;
-    text-align: center;
-    animation: fadeUp 0.3s ease both;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-  }
-  .dialog h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; color: var(--white);
-    margin-bottom: 14px;
-  }
-  .dialog p {
-    font-size: 14px; color: var(--white-dim);
-    margin-bottom: 32px; line-height: 1.7;
-  }
-  .dialog-btns { display: flex; gap: 12px; margin-top: 8px; }
-  .btn-cancel {
-    flex: 1; padding: 13px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.18);
-    color: var(--white-dim); border-radius: 5px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    cursor: pointer; transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-cancel:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
-  .btn-confirm {
-    flex: 1; padding: 13px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-light));
-    color: #fff; border: none; border-radius: 5px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(245,130,10,0.35);
-    transition: opacity 0.2s;
-  }
-  .btn-confirm:hover { opacity: 0.88; }
+      .dialog {
+        background: var(--navy-mid);
+        border: 1px solid rgba(245, 130, 10, 0.3);
+        border-radius: 8px;
+        padding: 44px;
+        width: 100%;
+        max-width: 440px;
+        text-align: center;
+        animation: fadeUp 0.3s ease both;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      }
+      .dialog h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        color: var(--white);
+        margin-bottom: 14px;
+      }
+      .dialog p {
+        font-size: 14px;
+        color: var(--white-dim);
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+      .dialog-btns {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .btn-cancel {
+        flex: 1;
+        padding: 13px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: var(--white-dim);
+        border-radius: 5px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .btn-cancel:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        color: var(--white);
+      }
+      .btn-confirm {
+        flex: 1;
+        padding: 13px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(245, 130, 10, 0.35);
+        transition: opacity 0.2s;
+      }
+      .btn-confirm:hover {
+        opacity: 0.88;
+      }
 
-  .spinner {
-    width: 18px; height: 18px;
-    border: 2px solid rgba(245,130,10,0.3);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    display: inline-block; vertical-align: middle;
-    margin-right: 8px;
-  }
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(245, 130, 10, 0.3);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
 
-  .success-msg {
-    font-size: 13px; color: var(--success);
-    margin-top: 8px; display: none; text-align: center;
-  }
+      .success-msg {
+        font-size: 13px;
+        color: var(--success);
+        margin-top: 8px;
+        display: none;
+        text-align: center;
+      }
 
-  .error-msg-submission {
-    font-size: 13px; color: var(--danger);
-    margin-top: 8px; display: none; text-align: center;
-  }
+      .error-msg-submission {
+        font-size: 13px;
+        color: var(--danger);
+        margin-top: 8px;
+        display: none;
+        text-align: center;
+      }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-  @media (max-width: 640px) {
-    .exam-header { padding: 0 16px; height: 60px; }
-    .exam-body { padding: 28px 16px 86px; }
-    .submit-bar { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
-    .form-card { padding: 28px 20px; }
-    .header-meta { gap: 16px; }
-    .progress-block { display: none; }
-    .question-card { padding: 20px 18px; }
-    .brand-logo-img { max-width: 260px; }
-    .submit-info { width: 100%; order: 1; font-size: 12px; }
-    .btn-submit { order: 2; padding: 10px 30px; }
-  }
-</style>
-</head>
-<body>
-
-<!-- ══ SPLASH ════════════════════════════════════ -->
-<div id="splash">
-  <div class="splash-inner">
-    <div class="brand-block">
-      <img src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg" alt="AMRA - Alaric Market Research and Advisory" class="brand-logo-img" />
-      <div class="splash-divider"><span></span></div>
-      <p class="splash-tagline">Capital Markets · Proprietary Research</p>
-      <div style="margin: 12px 0;">
-        <div class="splash-level">Level 1</div>
-      </div>
-      <p class="splash-title">Entrance Assessment Portal</p>
-    </div>
-    <div class="form-card">
-      <div class="form-group">
-        <label for="inp-name">Full Name</label>
-        <input type="text" id="inp-name" placeholder="e.g. Arjun Mehta" autocomplete="name"/>
-        <p class="error-msg" id="err-name">Please enter your full name.</p>
-      </div>
-      <div class="form-group">
-        <label for="inp-email">Email Address</label>
-        <input type="email" id="inp-email" placeholder="e.g. arjun@email.com" autocomplete="email"/>
-        <p class="error-msg" id="err-email">Please enter a valid email address.</p>
-      </div>
-      <p class="form-notice">
-        This assessment contains <strong>25 questions</strong> to be completed in
-        <strong>30 minutes</strong>. The timer begins immediately upon entry.
-        Ensure a stable internet connection before proceeding.
-      </p>
-      <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ EXAM ══════════════════════════════════════ -->
-<div id="exam">
-  <header class="exam-header">
-    <div class="header-brand">
-      <img src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg" alt="AMRA Logo" style="height: 40px; width: auto;" />
-    </div>
-    <div class="header-meta">
-      <div class="timer-block">
-        <span class="timer-label">Time Remaining</span>
-        <span class="timer-display" id="timer">30:00</span>
-      </div>
-      <div class="progress-block">
-        <div class="progress-label">Progress</div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="progress-fill"></div>
+      @media (max-width: 640px) {
+        .exam-header {
+          padding: 0 16px;
+          height: 60px;
+        }
+        .exam-body {
+          padding: 28px 16px 86px;
+        }
+        .submit-bar {
+          padding: 14px 16px;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .form-card {
+          padding: 28px 20px;
+        }
+        .header-meta {
+          gap: 16px;
+        }
+        .progress-block {
+          display: none;
+        }
+        .question-card {
+          padding: 20px 18px;
+        }
+        .brand-logo-img {
+          max-width: 260px;
+        }
+        .submit-info {
+          width: 100%;
+          order: 1;
+          font-size: 12px;
+        }
+        .btn-submit {
+          order: 2;
+          padding: 10px 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ SPLASH ════════════════════════════════════ -->
+    <div id="splash">
+      <div class="splash-inner">
+        <div class="brand-block">
+          <img
+            src="assets/amra-logo.jpg"
+            alt="AMRA - Alaric Market Research and Advisory"
+            class="brand-logo-img"
+          />
+          <div class="splash-divider"><span></span></div>
+          <p class="splash-tagline">Capital Markets · Proprietary Research</p>
+          <div style="margin: 12px 0">
+            <div class="splash-level">Level 1</div>
+          </div>
+          <p class="splash-title">Entrance Assessment Portal</p>
         </div>
-        <div class="progress-count" id="progress-count">0 / 25</div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="inp-name">Full Name</label>
+            <input
+              type="text"
+              id="inp-name"
+              placeholder="e.g. Arjun Mehta"
+              autocomplete="name"
+            />
+            <p class="error-msg" id="err-name">Please enter your full name.</p>
+          </div>
+          <div class="form-group">
+            <label for="inp-email">Email Address</label>
+            <input
+              type="email"
+              id="inp-email"
+              placeholder="e.g. arjun@email.com"
+              autocomplete="email"
+            />
+            <p class="error-msg" id="err-email">
+              Please enter a valid email address.
+            </p>
+          </div>
+          <p class="form-notice">
+            This assessment contains <strong>25 questions</strong> to be
+            completed in <strong>30 minutes</strong>. The timer begins
+            immediately upon entry. Ensure a stable internet connection before
+            proceeding.
+          </p>
+          <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
+        </div>
       </div>
     </div>
-  </header>
-  <div class="exam-body" id="exam-body"></div>
-  <div class="submit-bar">
-    <div class="submit-info">
-      Questions answered: <strong><span id="answered-count">0</span> / 25</strong>
-      &nbsp;·&nbsp; <span>Unanswered questions will be marked as skipped.</span>
-    </div>
-    <button class="btn-submit" id="btn-next-form">Next: Demographic Form</button>
-  </div>
-</div>
 
-<!-- ══ DEMOGRAPHIC FORM OVERLAY ═══════════════════ -->
-<div class="overlay" id="overlay-form">
-  <div class="dialog">
-    <h3>Final Details</h3>
-    <p>Please provide a few basic details before submitting your responses.</p>
-
-    <div class="form-group" style="text-align:left; margin-bottom:14px;">
-      <label for="inp-age">Age</label>
-      <input type="number" id="inp-age" placeholder="e.g. 22" min="16" />
-    </div>
-
-    <div class="form-group" style="text-align:left; margin-bottom:14px;">
-      <label for="inp-experience">Total Trading Experience</label>
-      <input type="text" id="inp-experience" placeholder="e.g. 6 months intraday in equities" />
-    </div>
-
-    <div class="form-group" style="text-align:left; margin-bottom:14px;">
-      <label for="inp-firm">Firm Name (Trading Firm / Self Funded)</label>
-      <input type="text" id="inp-firm" placeholder="e.g. Self funded / XYZ Prop Desk" />
-    </div>
-
-    <div class="form-group" style="text-align:left; margin-bottom:22px;">
-      <label for="inp-dependents">Number of Dependents</label>
-      <input type="number" id="inp-dependents" placeholder="e.g. 2" min="0" />
-    </div>
-
-    <div id="form-messages">
-      <p class="success-msg" id="success-msg">✓ Submitting your assessment...</p>
-      <p class="error-msg-submission" id="error-msg-submission"></p>
+    <!-- ══ EXAM ══════════════════════════════════════ -->
+    <div id="exam">
+      <header class="exam-header">
+        <div class="header-brand">
+          <img
+            src="assets/amra-logo.jpg"
+            alt="AMRA Logo"
+            style="height: 40px; width: auto"
+          />
+        </div>
+        <div class="header-meta">
+          <div class="timer-block">
+            <span class="timer-label">Time Remaining</span>
+            <span class="timer-display" id="timer">30:00</span>
+          </div>
+          <div class="progress-block">
+            <div class="progress-label">Progress</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-count" id="progress-count">0 / 25</div>
+          </div>
+        </div>
+      </header>
+      <div class="exam-body" id="exam-body"></div>
+      <div class="submit-bar">
+        <div class="submit-info">
+          Questions answered:
+          <strong><span id="answered-count">0</span> / 25</strong> &nbsp;·&nbsp;
+          <span>Unanswered questions will be marked as skipped.</span>
+        </div>
+        <button class="btn-submit" id="btn-next-form">
+          Next: Demographic Form
+        </button>
+      </div>
     </div>
 
-    <div class="dialog-btns">
-      <button class="btn-cancel" id="btn-cancel-form">Go Back</button>
-      <button class="btn-confirm" id="btn-confirm-form">Submit Assessment</button>
+    <!-- ══ DEMOGRAPHIC FORM OVERLAY ═══════════════════ -->
+    <div class="overlay" id="overlay-form">
+      <div class="dialog">
+        <h3>Final Details</h3>
+        <p>
+          Please provide a few basic details before submitting your responses.
+        </p>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 14px">
+          <label for="inp-age">Age</label>
+          <input type="number" id="inp-age" placeholder="e.g. 22" min="16" />
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 14px">
+          <label for="inp-experience">Total Trading Experience</label>
+          <input
+            type="text"
+            id="inp-experience"
+            placeholder="e.g. 6 months intraday in equities"
+          />
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 14px">
+          <label for="inp-firm">Firm Name (Trading Firm / Self Funded)</label>
+          <input
+            type="text"
+            id="inp-firm"
+            placeholder="e.g. Self funded / XYZ Prop Desk"
+          />
+        </div>
+
+        <div class="form-group" style="text-align: left; margin-bottom: 22px">
+          <label for="inp-dependents">Number of Dependents</label>
+          <input
+            type="number"
+            id="inp-dependents"
+            placeholder="e.g. 2"
+            min="0"
+          />
+        </div>
+
+        <div id="form-messages">
+          <p class="success-msg" id="success-msg">
+            ✓ Submitting your assessment...
+          </p>
+          <p class="error-msg-submission" id="error-msg-submission"></p>
+        </div>
+
+        <div class="dialog-btns">
+          <button class="btn-cancel" id="btn-cancel-form">Go Back</button>
+          <button class="btn-confirm" id="btn-confirm-form">
+            Submit Assessment
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- ══ RESULT ═════════════════════════════════════ -->
-<div id="result">
-  <div class="result-inner">
-    <img src="https://raw.githubusercontent.com/Shiv07S/Alaric-Exam/main/amra-logo.jpg" alt="AMRA Logo" style="height: 64px; width: auto; margin: 0 auto 32px; display: block; filter: drop-shadow(0 4px 16px rgba(245,130,10,0.2));" />
-    <h2 class="result-title">Assessment Complete</h2>
-    <div class="result-line"></div>
-    <p class="result-msg">
-      Thank you for completing the Alaric Market Research & Advisory Level 1 Assessment.<br><br>
-      Your responses have been successfully submitted and recorded.<br><br>
-      <strong style="color:var(--accent-light);">
-        Results Will Be Announced Soon
-      </strong>
-    </p>
-    <span class="result-ref" id="result-ref">REF: —</span>
-  </div>
-</div>
+    <!-- ══ RESULT ═════════════════════════════════════ -->
+    <div id="result">
+      <div class="result-inner">
+        <img
+          src="assets/amra-logo.jpg"
+          alt="AMRA Logo"
+          style="
+            height: 64px;
+            width: auto;
+            margin: 0 auto 32px;
+            display: block;
+            filter: drop-shadow(0 4px 16px rgba(245, 130, 10, 0.2));
+          "
+        />
+        <h2 class="result-title">Assessment Complete</h2>
+        <div class="result-line"></div>
+        <p class="result-msg">
+          Thank you for completing the Alaric Market Research & Advisory Level 1
+          Assessment.<br /><br />
+          Your responses have been successfully submitted and recorded.<br /><br />
+          <strong style="color: var(--accent-light)">
+            Results Will Be Announced Soon
+          </strong>
+        </p>
+        <span class="result-ref" id="result-ref">REF: —</span>
+      </div>
+    </div>
 
-<script>
-// ══════════════════════════════════════════
-//  CONFIG
-// ══════════════════════════════════════════
-const ASSESSMENT_CONFIG = {
-  level: 1,
-  title: "Entrance Assessment",
-  totalQuestions: 25,
-  durationMinutes: 30
-};
+    <script>
+      // ══════════════════════════════════════════
+      //  CONFIG
+      // ══════════════════════════════════════════
+      const ASSESSMENT_CONFIG = {
+        level: 1,
+        title: "Entrance Assessment",
+        totalQuestions: 25,
+        durationMinutes: 30,
+      };
 
-// REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRPs7HZuhVSJlAQfkWrcazPY2BpJ7-rqLb9BULZsWohCqCa-SGROZTJe9Mks4t4rvQ/exec";
-const EXAM_DURATION_SECONDS = ASSESSMENT_CONFIG.durationMinutes * 60;
+      // REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
+      const APPS_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbx4nTBUEr5JJbOovq8QPlQ4PQEzFgU1wBalWnLBpEz1-Nk_ckafIp-A2IyfoUc0fKcS/exec";
+      const EXAM_DURATION_SECONDS = ASSESSMENT_CONFIG.durationMinutes * 60;
 
-// ══════════════════════════════════════════
-//  QUESTION BANK — 25 QUESTIONS
-// ══════════════════════════════════════════
-const QUESTIONS = [
-  // SECTION 1: CANDLESTICK BASICS (Questions 1-5)
-  {
-    section: "Section 1: Candlestick Basics",
-    text: "A long green (or white) real body on a candlestick indicates:",
-    options: ["Buyers were in control for most of the period","Sellers were in control for most of the period","Opening and closing prices were almost equal","The market was completely flat"],
-    answer: 0
-  },
-  {
-    section: null,
-    text: "A shooting star candlestick is most significant when it appears:",
-    options: ["At the bottom of a downtrend","In the middle of a sideways market","At the top of an uptrend","Right after a doji"],
-    answer: 2
-  },
-  {
-    section: null,
-    text: "A hammer candlestick has:",
-    options: ["A small real body at the top, long lower wick, little or no upper wick","A small real body at the bottom, long upper wick, little or no lower wick","A long real body with equal wicks on both sides","No real body at all"],
-    answer: 0
-  },
-  {
-    section: null,
-    text: "A doji candlestick indicates:",
-    options: ["Strong buying pressure","Strong selling pressure","Indecision between buyers and sellers","A guaranteed trend reversal"],
-    answer: 2
-  },
-  {
-    section: null,
-    text: "A bearish engulfing pattern consists of:",
-    options: ["A small green candle followed by a smaller green candle","A small red candle followed by a larger green candle","A small green candle followed by a larger red candle that completely covers the previous candle's body","Two doji candles in a row"],
-    answer: 2
-  },
-  {
-    section: "Section 2: Support & Resistance",
-    text: "Support is best defined as:",
-    options: ["A price level where selling pressure is expected to increase","A price level where buying pressure is expected to emerge and stop prices from falling further","The average closing price over 200 days","The highest price ever reached by an asset"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "When a price breaks above a resistance level, that level often becomes:",
-    options: ["New resistance","New support","Irrelevant","The new all-time high"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A valid resistance level is one where price has:",
-    options: ["Touched once briefly","Touched multiple times and failed to break above","Never traded before","Only appeared on weekly charts"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A false breakout (or fakeout) occurs when:",
-    options: ["Price breaks a level and continues moving in that direction","Price breaks a level but quickly reverses back through it","Price never reaches the level at all","Volume is completely absent during the move"],
-    answer: 1
-  },
-  {
-    section: "Section 3: Trends & Trendlines",
-    text: "An uptrend is defined by:",
-    options: ["Lower highs and lower lows","Higher highs and higher lows","Equal highs and equal lows","Random price movement"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A trendline in an uptrend is drawn by connecting:",
-    options: ["Lower highs","Higher lows","Higher highs","Lower lows"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "The steeper a trendline, the:",
-    options: ["More reliable and longer it will last","More likely it is to break unexpectedly","Less volume is required to confirm it","Better it is for long-term position trading"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A trend reversal is confirmed when:",
-    options: ["Price touches the trendline once","A new higher high is made in a downtrend","Price breaks the trendline and makes a lower low (in uptrend) or higher high (in downtrend)","Volume drops to zero"],
-    answer: 2
-  },
-  {
-    section: "Section 4: Chart Patterns",
-    text: "A head and shoulders top pattern signals:",
-    options: ["Bullish continuation","Bearish reversal","Sideways consolidation","Continuation of uptrend"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A symmetrical triangle pattern typically indicates:",
-    options: ["A guaranteed reversal","A period of consolidation before a breakout in either direction","An immediate continuation of the current trend","No trading opportunity"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A flag pattern is considered a:",
-    options: ["Reversal pattern","Continuation pattern","Exhaustion pattern","Volume pattern"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A double bottom pattern is confirmed when:",
-    options: ["Price touches the second bottom and reverses up","Price breaks above the resistance level (the middle peak) after forming two bottoms","Volume decreases on the breakout","Both bottoms are at different price levels"],
-    answer: 1
-  },
-  {
-    section: "Section 5: Price Action & Candle Patterns",
-    text: "A pin bar (or long wick) that rejects a price level is most useful for:",
-    options: ["Entering in the direction of the rejection","Ignoring as market noise","Entering against the rejection","Confirming a moving average crossover"],
-    answer: 0
-  },
-  {
-    section: null,
-    text: "An inside bar pattern occurs when:",
-    options: ["The current candle's range is completely within the previous candle's range","The current candle closes higher than the previous candle","The current candle gaps up from the previous close","Volume doubles on the current candle"],
-    answer: 0
-  },
-  {
-    section: null,
-    text: "When price makes a higher high but closes near the low of the candle, this suggests:",
-    options: ["Strong buying pressure throughout the session","Selling pressure emerged late in the session","The trend will continue strongly upward","No information can be derived"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A bullish reversal price action setup often includes:",
-    options: ["A long red candle at the bottom of a downtrend","A long lower wick (hammer/pin bar) after a series of down candles","A doji at the top of an uptrend","Increasing distance between price and moving average"],
-    answer: 1
-  },
-  {
-    section: "Section 6: Basic Indicators & Volume",
-    text: "The purpose of a moving average is to:",
-    options: ["Predict exact future prices","Smooth out price data to identify trend direction","Measure overbought and oversold conditions","Calculate trading volume"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "A golden cross occurs when:",
-    options: ["A short-term moving average crosses below a long-term moving average","A short-term moving average crosses above a long-term moving average","Price crosses above a moving average","Two moving averages diverge equally"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "Volume confirmation for a breakout means:",
-    options: ["Volume decreases as price breaks out","Volume increases significantly during or immediately after the breakout","Volume remains completely flat","Volume only matters on the previous day"],
-    answer: 1
-  },
-  {
-    section: null,
-    text: "If price is rising but volume is falling, this could indicate:",
-    options: ["Strong conviction behind the uptrend","The uptrend is weakening and may reverse","A golden cross is about to occur","Support is being established"],
-    answer: 1
-  }
-];
+      // ══════════════════════════════════════════
+      //  SESSION PATH
+      // ══════════════════════════════════════════
+      // Session files are pre-generated by generate_session.py and hosted at this path.
+      // URL must include ?session=<uuid> — e.g. index.html?session=abc123
+      const SESSION_BASE_URL = "data/sessions/";
+      const SCORE_API_URL = "/api/session/score";
 
-// ══════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════
-let userName = "", userEmail = "";
-let userAge = "", userExperience = "", userFirm = "", userDependents = "";
-let shuffledQuestions = [];
-let answers = [];
-let timeLeft = EXAM_DURATION_SECONDS;
-let timerInterval = null;
-let submitted = false;
+      // ══════════════════════════════════════════
+      //  QUESTION BANK — 25 QUESTIONS (LEGACY — kept for reference only)
+      // ══════════════════════════════════════════
+      const QUESTIONS = [
+        // SECTION 1: CANDLESTICK BASICS (Questions 1-5)
+        {
+          section: "Section 1: Candlestick Basics",
+          text: "A long green (or white) real body on a candlestick indicates:",
+          options: [
+            "Buyers were in control for most of the period",
+            "Sellers were in control for most of the period",
+            "Opening and closing prices were almost equal",
+            "The market was completely flat",
+          ],
+          answer: 0,
+        },
+        {
+          section: null,
+          text: "A shooting star candlestick is most significant when it appears:",
+          options: [
+            "At the bottom of a downtrend",
+            "In the middle of a sideways market",
+            "At the top of an uptrend",
+            "Right after a doji",
+          ],
+          answer: 2,
+        },
+        {
+          section: null,
+          text: "A hammer candlestick has:",
+          options: [
+            "A small real body at the top, long lower wick, little or no upper wick",
+            "A small real body at the bottom, long upper wick, little or no lower wick",
+            "A long real body with equal wicks on both sides",
+            "No real body at all",
+          ],
+          answer: 0,
+        },
+        {
+          section: null,
+          text: "A doji candlestick indicates:",
+          options: [
+            "Strong buying pressure",
+            "Strong selling pressure",
+            "Indecision between buyers and sellers",
+            "A guaranteed trend reversal",
+          ],
+          answer: 2,
+        },
+        {
+          section: null,
+          text: "A bearish engulfing pattern consists of:",
+          options: [
+            "A small green candle followed by a smaller green candle",
+            "A small red candle followed by a larger green candle",
+            "A small green candle followed by a larger red candle that completely covers the previous candle's body",
+            "Two doji candles in a row",
+          ],
+          answer: 2,
+        },
+        {
+          section: "Section 2: Support & Resistance",
+          text: "Support is best defined as:",
+          options: [
+            "A price level where selling pressure is expected to increase",
+            "A price level where buying pressure is expected to emerge and stop prices from falling further",
+            "The average closing price over 200 days",
+            "The highest price ever reached by an asset",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "When a price breaks above a resistance level, that level often becomes:",
+          options: [
+            "New resistance",
+            "New support",
+            "Irrelevant",
+            "The new all-time high",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A valid resistance level is one where price has:",
+          options: [
+            "Touched once briefly",
+            "Touched multiple times and failed to break above",
+            "Never traded before",
+            "Only appeared on weekly charts",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A false breakout (or fakeout) occurs when:",
+          options: [
+            "Price breaks a level and continues moving in that direction",
+            "Price breaks a level but quickly reverses back through it",
+            "Price never reaches the level at all",
+            "Volume is completely absent during the move",
+          ],
+          answer: 1,
+        },
+        {
+          section: "Section 3: Trends & Trendlines",
+          text: "An uptrend is defined by:",
+          options: [
+            "Lower highs and lower lows",
+            "Higher highs and higher lows",
+            "Equal highs and equal lows",
+            "Random price movement",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A trendline in an uptrend is drawn by connecting:",
+          options: ["Lower highs", "Higher lows", "Higher highs", "Lower lows"],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "The steeper a trendline, the:",
+          options: [
+            "More reliable and longer it will last",
+            "More likely it is to break unexpectedly",
+            "Less volume is required to confirm it",
+            "Better it is for long-term position trading",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A trend reversal is confirmed when:",
+          options: [
+            "Price touches the trendline once",
+            "A new higher high is made in a downtrend",
+            "Price breaks the trendline and makes a lower low (in uptrend) or higher high (in downtrend)",
+            "Volume drops to zero",
+          ],
+          answer: 2,
+        },
+        {
+          section: "Section 4: Chart Patterns",
+          text: "A head and shoulders top pattern signals:",
+          options: [
+            "Bullish continuation",
+            "Bearish reversal",
+            "Sideways consolidation",
+            "Continuation of uptrend",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A symmetrical triangle pattern typically indicates:",
+          options: [
+            "A guaranteed reversal",
+            "A period of consolidation before a breakout in either direction",
+            "An immediate continuation of the current trend",
+            "No trading opportunity",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A flag pattern is considered a:",
+          options: [
+            "Reversal pattern",
+            "Continuation pattern",
+            "Exhaustion pattern",
+            "Volume pattern",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A double bottom pattern is confirmed when:",
+          options: [
+            "Price touches the second bottom and reverses up",
+            "Price breaks above the resistance level (the middle peak) after forming two bottoms",
+            "Volume decreases on the breakout",
+            "Both bottoms are at different price levels",
+          ],
+          answer: 1,
+        },
+        {
+          section: "Section 5: Price Action & Candle Patterns",
+          text: "A pin bar (or long wick) that rejects a price level is most useful for:",
+          options: [
+            "Entering in the direction of the rejection",
+            "Ignoring as market noise",
+            "Entering against the rejection",
+            "Confirming a moving average crossover",
+          ],
+          answer: 0,
+        },
+        {
+          section: null,
+          text: "An inside bar pattern occurs when:",
+          options: [
+            "The current candle's range is completely within the previous candle's range",
+            "The current candle closes higher than the previous candle",
+            "The current candle gaps up from the previous close",
+            "Volume doubles on the current candle",
+          ],
+          answer: 0,
+        },
+        {
+          section: null,
+          text: "When price makes a higher high but closes near the low of the candle, this suggests:",
+          options: [
+            "Strong buying pressure throughout the session",
+            "Selling pressure emerged late in the session",
+            "The trend will continue strongly upward",
+            "No information can be derived",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A bullish reversal price action setup often includes:",
+          options: [
+            "A long red candle at the bottom of a downtrend",
+            "A long lower wick (hammer/pin bar) after a series of down candles",
+            "A doji at the top of an uptrend",
+            "Increasing distance between price and moving average",
+          ],
+          answer: 1,
+        },
+        {
+          section: "Section 6: Basic Indicators & Volume",
+          text: "The purpose of a moving average is to:",
+          options: [
+            "Predict exact future prices",
+            "Smooth out price data to identify trend direction",
+            "Measure overbought and oversold conditions",
+            "Calculate trading volume",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "A golden cross occurs when:",
+          options: [
+            "A short-term moving average crosses below a long-term moving average",
+            "A short-term moving average crosses above a long-term moving average",
+            "Price crosses above a moving average",
+            "Two moving averages diverge equally",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "Volume confirmation for a breakout means:",
+          options: [
+            "Volume decreases as price breaks out",
+            "Volume increases significantly during or immediately after the breakout",
+            "Volume remains completely flat",
+            "Volume only matters on the previous day",
+          ],
+          answer: 1,
+        },
+        {
+          section: null,
+          text: "If price is rising but volume is falling, this could indicate:",
+          options: [
+            "Strong conviction behind the uptrend",
+            "The uptrend is weakening and may reverse",
+            "A golden cross is about to occur",
+            "Support is being established",
+          ],
+          answer: 1,
+        },
+      ];
 
-// ══════════════════════════════════════════
-//  SHUFFLE (Fisher-Yates)
-// ══════════════════════════════════════════
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+      // ══════════════════════════════════════════
+      //  STATE
+      // ══════════════════════════════════════════
+      let userName = "",
+        userEmail = "";
+      let userAge = "",
+        userExperience = "",
+        userFirm = "",
+        userDependents = "";
+      let session = null; // populated by fetchSession()
+      let shuffledQuestions = [];
+      let answers = [];
+      let timeLeft = EXAM_DURATION_SECONDS;
+      let timerInterval = null;
+      let submitted = false;
+      let tokenFromUrl = null; // set if ?token= present (online/token mode)
+      let tab_switch_count = 0;
+      let fullscreen_exit_count = 0;
 
-// ══════════════════════════════════════════
-//  SHUFFLE OPTIONS FOR EACH QUESTION
-// ══════════════════════════════════════════
-function shuffleOptionsForQuestion(question) {
-  const optionsWithAnswers = question.options.map((opt, idx) => ({ text: opt, originalIdx: idx }));
-  const shuffled = shuffle(optionsWithAnswers);
-  const newAnswer = shuffled.findIndex(item => item.originalIdx === question.answer);
-  return {
-    ...question,
-    options: shuffled.map(item => item.text),
-    answer: newAnswer
-  };
-}
+      // ══════════════════════════════════════════
+      //  SHUFFLE (Fisher-Yates)
+      // ══════════════════════════════════════════
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
 
-// ══════════════════════════════════════════
-//  SECURITY PROTECTIONS
-// ══════════════════════════════════════════
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("copy", e => e.preventDefault());
-document.addEventListener("cut", e => e.preventDefault());
-document.addEventListener("paste", e => e.preventDefault());
+      // ══════════════════════════════════════════
+      //  SESSION FETCH
+      // ══════════════════════════════════════════
+      async function fetchSession() {
+        const params = new URLSearchParams(window.location.search);
+        const tokenParam = params.get("token");
+        let sessionId;
 
-window.addEventListener("beforeunload", (e) => {
-  if (!submitted) {
-    e.preventDefault();
-    e.returnValue = "Are you sure you want to leave? Your progress will be lost.";
-  }
-});
+        if (tokenParam) {
+          // Online mode: validate token with Apps Script, receive session_id
+          tokenFromUrl = tokenParam;
+          let result;
+          try {
+            const resp = await fetch(APPS_SCRIPT_URL, {
+              method: "POST",
+              mode: "cors",
+              body: JSON.stringify({
+                action: "validate_token",
+                token: tokenParam,
+              }),
+            });
+            result = await resp.json();
+          } catch {
+            throw new Error("Token validation failed. Please contact support.");
+          }
+          if (result.error) throw new Error(result.error);
+          sessionId = result.session_id;
+        } else {
+          // Offline mode: read session_id from ?session= param
+          sessionId = params.get("session");
+          if (!sessionId)
+            throw new Error("No session ID in URL — use ?session=<uuid>");
+        }
 
-// ══════════════════════════════════════════
-//  SPLASH → EXAM
-// ══════════════════════════════════════════
-document.getElementById("btn-begin").addEventListener("click", () => {
-  const nameVal  = document.getElementById("inp-name").value.trim();
-  const emailVal = document.getElementById("inp-email").value.trim();
-  let valid = true;
+        const resp = await fetch(`${SESSION_BASE_URL}${sessionId}.json`);
+        if (!resp.ok)
+          throw new Error(`Session file not found (${resp.status})`);
+        return resp.json();
+      }
 
-  if (!nameVal) {
-    document.getElementById("err-name").style.display = "block";
-    valid = false;
-  } else {
-    document.getElementById("err-name").style.display = "none";
-  }
+      // ══════════════════════════════════════════
+      //  SECURITY PROTECTIONS
+      // ══════════════════════════════════════════
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      document.addEventListener("copy", (e) => e.preventDefault());
+      document.addEventListener("cut", (e) => e.preventDefault());
+      document.addEventListener("paste", (e) => e.preventDefault());
 
-  if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-    document.getElementById("err-email").style.display = "block";
-    valid = false;
-  } else {
-    document.getElementById("err-email").style.display = "none";
-  }
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) tab_switch_count++;
+      });
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) fullscreen_exit_count++;
+      });
 
-  if (!valid) return;
+      window.addEventListener("beforeunload", (e) => {
+        if (!submitted) {
+          e.preventDefault();
+          e.returnValue =
+            "Are you sure you want to leave? Your progress will be lost.";
+        }
+      });
 
-  userName  = nameVal;
-  userEmail = emailVal;
+      // ══════════════════════════════════════════
+      //  SPLASH → EXAM
+      // ══════════════════════════════════════════
+      document
+        .getElementById("btn-begin")
+        .addEventListener("click", async () => {
+          const nameVal = document.getElementById("inp-name").value.trim();
+          const emailVal = document.getElementById("inp-email").value.trim();
+          let valid = true;
 
-  shuffledQuestions = shuffle(QUESTIONS).map(q => shuffleOptionsForQuestion(q));
-  answers = new Array(shuffledQuestions.length).fill(null);
+          if (!nameVal) {
+            document.getElementById("err-name").style.display = "block";
+            valid = false;
+          } else {
+            document.getElementById("err-name").style.display = "none";
+          }
 
-  document.getElementById("splash").classList.add("hidden");
-  document.getElementById("exam").classList.add("active");
+          if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+            document.getElementById("err-email").style.display = "block";
+            valid = false;
+          } else {
+            document.getElementById("err-email").style.display = "none";
+          }
 
-  buildExam();
-  startTimer();
-});
+          if (!valid) return;
 
-// ══════════════════════════════════════════
-//  BUILD EXAM
-// ══════════════════════════════════════════
-function buildExam() {
-  const body = document.getElementById("exam-body");
-  const keys = ["A","B","C","D"];
-  let html = "";
+          userName = nameVal;
+          userEmail = emailVal;
 
-  html += `<div class="section-divider">
+          try {
+            session = await fetchSession();
+            shuffledQuestions = session.draw; // options already shuffled server-side
+            answers = new Array(shuffledQuestions.length).fill(null);
+          } catch (err) {
+            const errEl = document.getElementById("err-email");
+            errEl.textContent =
+              err.message || "Could not start session. Please try again.";
+            errEl.style.display = "block";
+            return;
+          }
+
+          document.getElementById("splash").classList.add("hidden");
+          document.getElementById("exam").classList.add("active");
+
+          buildExam();
+          startTimer();
+        });
+
+      // ══════════════════════════════════════════
+      //  BUILD EXAM
+      // ══════════════════════════════════════════
+      function buildExam() {
+        const body = document.getElementById("exam-body");
+        const keys = ["A", "B", "C", "D"];
+        let html = "";
+
+        html += `<div class="section-divider">
     <div class="line"></div>
     <div class="section-tag">Level 1: Capital Markets — Entrance Assessment · 25 Questions</div>
     <div class="line right"></div>
   </div>`;
 
-  shuffledQuestions.forEach((q, i) => {
-    html += `<div class="question-card" id="qcard-${i}">
-      <div class="q-number">Q${String(i+1).padStart(2,"0")} / 25</div>
-      <div class="q-text">${q.text}</div>
+        shuffledQuestions.forEach((q, i) => {
+          html += `<div class="question-card" id="qcard-${i}">
+      <div class="q-number">Q${String(i + 1).padStart(2, "0")} / 25</div>
+      <div class="q-text">${q.question}</div>
       <div class="options-grid">`;
-    q.options.forEach((opt, j) => {
-      html += `<label class="option-label" id="opt-${i}-${j}">
+          q.options.forEach((opt, j) => {
+            html += `<label class="option-label" id="opt-${i}-${j}">
         <input type="radio" name="q${i}" value="${j}" onchange="selectAnswer(${i},${j})"/>
         <span class="option-key">${keys[j]}</span>
         <span class="option-text">${opt}</span>
       </label>`;
-    });
-    html += `</div></div>`;
-  });
+          });
+          html += `</div></div>`;
+        });
 
-  body.innerHTML = html;
-}
+        body.innerHTML = html;
+      }
 
-// ══════════════════════════════════════════
-//  ANSWER SELECTION
-// ══════════════════════════════════════════
-function selectAnswer(qIndex, optIndex) {
-  if (submitted) return;
-  answers[qIndex] = optIndex;
-  const card = document.getElementById(`qcard-${qIndex}`);
-  card.classList.add("answered");
-  card.querySelectorAll(".option-label").forEach((lbl, j) => {
-    lbl.classList.toggle("selected", j === optIndex);
-  });
-  updateProgress();
-}
+      // ══════════════════════════════════════════
+      //  ANSWER SELECTION
+      // ══════════════════════════════════════════
+      function selectAnswer(qIndex, optIndex) {
+        if (submitted) return;
+        answers[qIndex] = shuffledQuestions[qIndex].options[optIndex]; // store text, not index
+        const card = document.getElementById(`qcard-${qIndex}`);
+        card.classList.add("answered");
+        card.querySelectorAll(".option-label").forEach((lbl, j) => {
+          lbl.classList.toggle("selected", j === optIndex);
+        });
+        updateProgress();
+      }
 
-function updateProgress() {
-  const count = answers.filter(a => a !== null).length;
-  document.getElementById("answered-count").textContent = count;
-  document.getElementById("progress-count").textContent = `${count} / 25`;
-  document.getElementById("progress-fill").style.width = `${(count/25)*100}%`;
-}
+      function updateProgress() {
+        const count = answers.filter((a) => a !== null).length;
+        document.getElementById("answered-count").textContent = count;
+        document.getElementById("progress-count").textContent = `${count} / 25`;
+        document.getElementById("progress-fill").style.width =
+          `${(count / 25) * 100}%`;
+      }
 
-// ══════════════════════════════════════════
-//  TIMER
-// ══════════════════════════════════════════
-function startTimer() {
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    updateTimerDisplay();
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      autoSubmit();
-    }
-  }, 1000);
-}
+      // ══════════════════════════════════════════
+      //  TIMER
+      // ══════════════════════════════════════════
+      function startTimer() {
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          updateTimerDisplay();
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            autoSubmit();
+          }
+        }, 1000);
+      }
 
-function updateTimerDisplay() {
-  const m = Math.floor(timeLeft / 60);
-  const s = timeLeft % 60;
-  const display = document.getElementById("timer");
-  display.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-  display.classList.remove("warning","critical");
-  if (timeLeft <= 60)       display.classList.add("critical");
-  else if (timeLeft <= 300) display.classList.add("warning");
-}
+      function updateTimerDisplay() {
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        const display = document.getElementById("timer");
+        display.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        display.classList.remove("warning", "critical");
+        if (timeLeft <= 60) display.classList.add("critical");
+        else if (timeLeft <= 300) display.classList.add("warning");
+      }
 
-function autoSubmit() {
-  if (submitted) return;
-  doSubmit(true);
-}
+      function autoSubmit() {
+        if (submitted) return;
+        doSubmit(true);
+      }
 
-// ══════════════════════════════════════════
-//  FLOW: NEXT → DEMOGRAPHIC FORM → SUBMIT
-// ══════════════════════════════════════════
-document.getElementById("btn-next-form").addEventListener("click", () => {
-  if (submitted) return;
-  updateProgress();
-  document.getElementById("overlay-form").classList.add("active");
-});
+      // ══════════════════════════════════════════
+      //  FLOW: NEXT → DEMOGRAPHIC FORM → SUBMIT
+      // ══════════════════════════════════════════
+      document.getElementById("btn-next-form").addEventListener("click", () => {
+        if (submitted) return;
+        updateProgress();
+        document.getElementById("overlay-form").classList.add("active");
+      });
 
-document.getElementById("btn-cancel-form").addEventListener("click", () => {
-  document.getElementById("overlay-form").classList.remove("active");
-  resetFormMessages();
-});
+      document
+        .getElementById("btn-cancel-form")
+        .addEventListener("click", () => {
+          document.getElementById("overlay-form").classList.remove("active");
+          resetFormMessages();
+        });
 
-document.getElementById("btn-confirm-form").addEventListener("click", () => {
-  const ageVal        = document.getElementById("inp-age").value.trim();
-  const expVal        = document.getElementById("inp-experience").value.trim();
-  const firmVal       = document.getElementById("inp-firm").value.trim();
-  const dependentsVal = document.getElementById("inp-dependents").value.trim();
+      document
+        .getElementById("btn-confirm-form")
+        .addEventListener("click", () => {
+          const ageVal = document.getElementById("inp-age").value.trim();
+          const expVal = document.getElementById("inp-experience").value.trim();
+          const firmVal = document.getElementById("inp-firm").value.trim();
+          const dependentsVal = document
+            .getElementById("inp-dependents")
+            .value.trim();
 
-  resetFormMessages();
+          resetFormMessages();
 
-  if (!ageVal || !expVal || !firmVal || !dependentsVal) {
-    showErrorMessage("Please fill all the fields before submitting.");
-    return;
-  }
+          if (!ageVal || !expVal || !firmVal || !dependentsVal) {
+            showErrorMessage("Please fill all the fields before submitting.");
+            return;
+          }
 
-  userAge        = ageVal;
-  userExperience = expVal;
-  userFirm       = firmVal;
-  userDependents = dependentsVal;
+          userAge = ageVal;
+          userExperience = expVal;
+          userFirm = firmVal;
+          userDependents = dependentsVal;
 
-  doSubmit(false);
-});
+          doSubmit(false);
+        });
 
-function resetFormMessages() {
-  document.getElementById("success-msg").style.display = "none";
-  document.getElementById("error-msg-submission").style.display = "none";
-}
+      function resetFormMessages() {
+        document.getElementById("success-msg").style.display = "none";
+        document.getElementById("error-msg-submission").style.display = "none";
+      }
 
-function showSuccessMessage(msg) {
-  const successEl = document.getElementById("success-msg");
-  successEl.textContent = msg;
-  successEl.style.display = "block";
-}
+      function showSuccessMessage(msg) {
+        const successEl = document.getElementById("success-msg");
+        successEl.textContent = msg;
+        successEl.style.display = "block";
+      }
 
-function showErrorMessage(msg) {
-  const errorEl = document.getElementById("error-msg-submission");
-  errorEl.textContent = msg;
-  errorEl.style.display = "block";
-}
+      function showErrorMessage(msg) {
+        const errorEl = document.getElementById("error-msg-submission");
+        errorEl.textContent = msg;
+        errorEl.style.display = "block";
+      }
 
-// ══════════════════════════════════════════
-//  SUBMISSION WITH PROPER ERROR HANDLING
-// ══════════════════════════════════════════
-async function doSubmit(isAutoSubmit) {
-  if (submitted) return;
-  submitted = true;
-  clearInterval(timerInterval);
+      // ══════════════════════════════════════════
+      //  SUBMISSION WITH PROPER ERROR HANDLING
+      // ══════════════════════════════════════════
+      async function doSubmit(isAutoSubmit) {
+        if (submitted) return;
+        submitted = true;
+        clearInterval(timerInterval);
 
-  const keys = ["A","B","C","D"];
-  let score = 0;
+        const confirmBtn = document.getElementById("btn-confirm-form");
+        if (confirmBtn) confirmBtn.disabled = true;
 
-  const detailedAnswers = shuffledQuestions.map((q, i) => {
-    const candidateIdx   = answers[i];
-    const correctIdx     = q.answer;
-    const isCorrect      = candidateIdx === correctIdx;
-    if (isCorrect) score++;
-    return {
-      questionText:    q.text,
-      section:         q.section || "General",
-      candidateAnswer: candidateIdx !== null ? keys[candidateIdx] : "Skipped",
-      correctAnswer:   keys[correctIdx],
-      result:          candidateIdx === null ? "Skipped" : (isCorrect ? "Correct" : "Wrong")
-    };
-  });
+        const refId = `AMR-L1-${Date.now().toString(36).toUpperCase()}`;
 
-  const refId = `AMR-L1-${Date.now().toString(36).toUpperCase()}`;
+        const userAnswers = shuffledQuestions.map((q, i) => ({
+          stable_id: q.stable_id,
+          difficulty: q.difficulty,
+          user_answer: answers[i],
+        }));
 
-  const payload = {
-    name:            userName,
-    email:           userEmail,
-    age:             userAge,
-    tradingExperience: userExperience,
-    firmName:        userFirm,
-    dependents:      userDependents,
-    score:           score,
-    totalQuestions:  shuffledQuestions.length,
-    percentage:      ((score / shuffledQuestions.length) * 100).toFixed(1),
-    autoSubmit:      isAutoSubmit,
-    referenceId:     refId,
-    submittedAt:     new Date().toISOString(),
-    detailedAnswers: JSON.stringify(detailedAnswers)
-  };
+        const payload = {
+          session_id: session.session_id,
+          name: userName,
+          email: userEmail,
+          age: userAge,
+          tradingExperience: userExperience,
+          firmName: userFirm,
+          dependents: userDependents,
+          timeTaken: EXAM_DURATION_SECONDS - timeLeft,
+          mode: tokenFromUrl ? "online" : "offline",
+          token: tokenFromUrl || undefined,
+          tabSwitchCount: tab_switch_count,
+          fullscreenExitCount: fullscreen_exit_count,
+          autoSubmit: isAutoSubmit,
+          referenceId: refId,
+          submittedAt: new Date().toISOString(),
+          user_answers: userAnswers,
+        };
 
-  // Show success message
-  showSuccessMessage("✓ Submitting your assessment...");
-  console.log("📤 APPS_SCRIPT_URL:", APPS_SCRIPT_URL);
-  console.log("📦 Payload:", payload);
+        showSuccessMessage("✓ Submitting your assessment...");
 
-  try {
-    console.log("🔄 Sending fetch request...");
-    await fetch(APPS_SCRIPT_URL, {
-  method: "POST",
-  mode: "no-cors",
-  body: JSON.stringify(payload)
-});
+        try {
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(payload),
+          });
 
-console.log("Submitted successfully");
-showResult(refId);
+          // Apps Script may 302-redirect — resp.json() throws SyntaxError on redirect body.
+          // Swallow SyntaxError (redirect = submission succeeded).
+          // Re-throw anything else (explicit server error or network fault).
+          try {
+            const result = await resp.json();
+            if (result.error) throw new Error(result.error);
+          } catch (parseErr) {
+            if (!(parseErr instanceof SyntaxError)) throw parseErr;
+            console.warn(
+              "Apps Script redirect — response unreadable; submission succeeded.",
+            );
+          }
 
-    console.log("📨 Response received. Status:", response.status);
+          showResult(refId);
+        } catch (error) {
+          console.error("Submission error:", error.message, error);
+          showErrorMessage(`Submission failed: ${error.message}`);
+          submitted = false;
+          if (confirmBtn) confirmBtn.disabled = false;
+        }
+      }
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("❌ Server error response:", errorText);
-      throw new Error(`Server error (${response.status}): ${response.statusText}`);
-    }
-
-    console.log("Submitted"); showResult(refId);
-    
-
-    // Delay before showing result
-    setTimeout(() => {
-      showResult(refId);
-    }, 800);
-
-  } catch (error) {
-    console.error("❌ SUBMISSION ERROR DETAILS:");
-    console.error("   Message:", error.message);
-    console.error("   Type:", error.name);
-    console.error("   Full Error:", error);
-    
-    const msg = `Submission failed: ${error.message}. Please check console (F12) for details.`;
-    showErrorMessage(msg);
-    submitted = false;
-
-    // Re-enable submit button
-    const confirmBtn = document.getElementById("btn-confirm-form");
-    if (confirmBtn) confirmBtn.disabled = false;
-  }
-}
-
-// ══════════════════════════════════════════
-//  RESULT SCREEN
-// ══════════════════════════════════════════
-function showResult(refId) {
-  document.getElementById("exam").classList.remove("active");
-  document.getElementById("overlay-form").classList.remove("active");
-  document.getElementById("result").classList.add("active");
-  document.getElementById("result-ref").textContent = `REF: ${refId}`;
-}
-</script>
-</body>
+      // ══════════════════════════════════════════
+      //  RESULT SCREEN
+      // ══════════════════════════════════════════
+      function showResult(refId) {
+        document.getElementById("exam").classList.remove("active");
+        document.getElementById("overlay-form").classList.remove("active");
+        document.getElementById("result").classList.add("active");
+        document.getElementById("result-ref").textContent = `REF: ${refId}`;
+      }
+    </script>
+  </body>
 </html>

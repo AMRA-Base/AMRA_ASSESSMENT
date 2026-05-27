@@ -1,0 +1,19 @@
+# Answer key — NEVER commit, contains correct answers
+data/bank/level1_answers.json
+data/bank/authored_questions.json
+data/bank/level1_full.json
+
+# Internal planning and analysis — not needed on the live site
+working_analysis/
+stable_build_v1/
+question_sources/
+docs/
+scripts/
+legacy_data/
+
+# Claude settings
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
