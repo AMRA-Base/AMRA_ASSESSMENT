@@ -1,0 +1,16 @@
+{
+  "_comment": "Bilateral conflict pairs. If question A is drawn, question B is excluded and vice versa. Registered through Phase B (Q001–Q038). Sub-topic uniqueness guards handle same-sub-topic competition automatically — only cross-sub-topic pairs require explicit registration.",
+  "version": "1.0",
+  "pairs": {
+    "L1-NEW-Q001": ["L1-NEW-Q002"],
+    "L1-NEW-Q002": ["L1-NEW-Q001"],
+    "L1-NEW-Q003": ["L1-NEW-Q004", "L1-NEW-Q007"],
+    "L1-NEW-Q004": ["L1-NEW-Q003", "L1-NEW-Q008"],
+    "L1-NEW-Q005": ["L1-NEW-Q009"],
+    "L1-NEW-Q007": ["L1-NEW-Q003", "L1-NEW-Q008"],
+    "L1-NEW-Q008": ["L1-NEW-Q004", "L1-NEW-Q007"],
+    "L1-NEW-Q009": ["L1-NEW-Q005"],
+    "L1-NEW-Q020": ["L1-NEW-Q021"],
+    "L1-NEW-Q021": ["L1-NEW-Q020"]
+  }
+}

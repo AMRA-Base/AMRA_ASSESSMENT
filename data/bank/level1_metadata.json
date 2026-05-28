@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-05-25T16:57:43.407849+00:00",
+  "total_active": 421,
+  "by_type": {
+    "conceptual": 383,
+    "chart": 15,
+    "situational": 23
+  },
+  "by_difficulty": {
+    "beginner": 306,
+    "intermediate": 115
+  },
+  "by_section": {
+    "Candlesticks": 87,
+    "Support_Resistance": 86,
+    "Trend_Structure": 97,
+    "Chart_Patterns": 71,
+    "Price_Action": 59,
+    "Technical_Concepts": 21
+  },
+  "cs_subtopics_per_section": {
+    "Trend_Structure": {
+      "hh_hl_ll_lh": 3,
+      "trend_reversal": 3,
+      "trend_continuation": 4
+    },
+    "Price_Action": {
+      "breakout_breakdown": 4,
+      "momentum": 4,
+      "price_behavior": 2
+    },
+    "Candlesticks": {
+      "single_candle_reversal": 3,
+      "multi_candle_reversal": 3
+    },
+    "Support_Resistance": {
+      "role_reversal": 2,
+      "retest_confirmation": 2
+    },
+    "Chart_Patterns": {
+      "continuation_patterns": 2,
+      "reversal_patterns": 2
+    },
+    "Technical_Concepts": {
+      "basic_indicators": 2,
+      "risk_reward": 2
+    }
+  }
+}

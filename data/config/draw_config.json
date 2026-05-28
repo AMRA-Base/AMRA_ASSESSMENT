@@ -1,0 +1,53 @@
+{
+  "_comment": "AMRA Level 1 draw engine constraints. Generated from draw_simulation.py (Phase B final). Do not edit manually — update draw_simulation.py and re-derive.",
+  "version": "1.0",
+  "level": "1",
+  "total_questions": 25,
+  "pass_threshold": 0.70,
+
+  "section_quotas": {
+    "Candlesticks":       5,
+    "Support_Resistance": 5,
+    "Trend_Structure":    5,
+    "Chart_Patterns":     4,
+    "Price_Action":       4,
+    "Technical_Concepts": 2
+  },
+
+  "section_cs_targets": {
+    "_comment": "Forced minimum chart/situational per section per draw. Sum must equal type_max.",
+    "Candlesticks":       2,
+    "Support_Resistance": 1,
+    "Trend_Structure":    3,
+    "Chart_Patterns":     1,
+    "Price_Action":       2,
+    "Technical_Concepts": 1
+  },
+
+  "section_i_targets": {
+    "_comment": "Soft intermediate difficulty preference per section. Sum=8; CP structurally over-draws 1I via pattern_failure (0B+3I), net total=9I.",
+    "Candlesticks":       1,
+    "Support_Resistance": 2,
+    "Trend_Structure":    2,
+    "Chart_Patterns":     1,
+    "Price_Action":       1,
+    "Technical_Concepts": 1
+  },
+
+  "difficulty": {
+    "beginner_target":     16,
+    "intermediate_target": 9
+  },
+
+  "type_quota": {
+    "min": 9,
+    "max": 10
+  },
+
+  "engine": {
+    "max_retries":          50,
+    "default_seed":         null,
+    "cs_sub_sort_policy":   "zero_conceptual_first",
+    "_cs_sub_sort_note":    "cs_subs with 0 non-CS candidates are always placed in forced positions to prevent FIX-2 quota shortfalls (e.g. PA/breakout_breakdown has 0 conceptuals)"
+  }
+}
