@@ -1,0 +1,25 @@
+{
+  "name": "assessment_work",
+  "version": "1.0.0",
+  "description": "Alaric Entrance Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AMRA-Base/AMRA_ASSESSMENT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AMRA-Base/AMRA_ASSESSMENT/issues"
+  },
+  "homepage": "https://github.com/AMRA-Base/AMRA_ASSESSMENT#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2"
+  }
+}

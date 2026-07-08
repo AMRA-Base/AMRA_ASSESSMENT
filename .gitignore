@@ -17,3 +17,6 @@ legacy_data/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Node / Tailwind build tooling (compiled output in assets/css/ IS committed)
+node_modules/

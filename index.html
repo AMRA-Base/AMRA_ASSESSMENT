@@ -10,900 +10,68 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --navy: #0f1d3a;
-        --navy-mid: #162040;
-        --navy-light: #1e2d52;
-        --navy-card: #192448;
-        --accent: #f5820a;
-        --accent-light: #ff9d38;
-        --accent-dim: #b5600a;
-        --blue-bold: #1b3a8c;
-        --white: #ffffff;
-        --white-soft: #eef2ff;
-        --white-dim: #a8bbdd;
-        --danger: #e05252;
-        --success: #34d399;
-        --warning: #fbbf24;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        background: var(--navy);
-        color: var(--white);
-        font-family: "DM Sans", sans-serif;
-        font-size: 15px;
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* Subtle grid texture */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-          linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-          );
-        background-size: 40px 40px;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      /* Orange top bar */
-      body::after {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(
-          90deg,
-          var(--blue-bold),
-          var(--accent),
-          var(--accent-light)
-        );
-        z-index: 1000;
-      }
-
-      /* ══ SPLASH ══════════════════════════════════ */
-      #splash {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 200;
-        background: radial-gradient(
-          ellipse at 60% 40%,
-          #1e2d52 0%,
-          #0f1d3a 70%
-        );
-        transition:
-          opacity 0.7s ease,
-          visibility 0.7s ease;
-        padding: 20px;
-      }
-      #splash.hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      .splash-inner {
-        width: 100%;
-        max-width: 520px;
-        animation: fadeUp 0.8s ease both;
-      }
-
-      .brand-block {
-        text-align: center;
-        margin-bottom: 36px;
-      }
-
-      .brand-logo-img {
-        max-width: 320px;
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto 24px;
-        filter: drop-shadow(0 4px 24px rgba(245, 130, 10, 0.18));
-      }
-
-      .splash-tagline {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--white-dim);
-        margin-bottom: 6px;
-      }
-
-      .splash-level {
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        color: var(--accent-light);
-        margin-bottom: 8px;
-        background: rgba(255, 157, 56, 0.1);
-        padding: 6px 12px;
-        border-radius: 3px;
-        display: inline-block;
-        border: 1px solid rgba(255, 157, 56, 0.3);
-      }
-
-      .splash-title {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 22px;
-        font-weight: 600;
-        color: var(--white-soft);
-        letter-spacing: 0.04em;
-      }
-
-      .splash-divider {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin: 24px 0;
-      }
-      .splash-divider::before,
-      .splash-divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(245, 130, 10, 0.4)
-        );
-      }
-      .splash-divider::after {
-        background: linear-gradient(
-          90deg,
-          rgba(245, 130, 10, 0.4),
-          transparent
-        );
-      }
-      .splash-divider span {
-        width: 6px;
-        height: 6px;
-        background: var(--accent);
-        border-radius: 50%;
-        flex-shrink: 0;
-      }
-
-      .form-card {
-        background: rgba(25, 36, 72, 0.85);
-        border: 1px solid rgba(245, 130, 10, 0.25);
-        border-radius: 8px;
-        padding: 40px;
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-      }
-      .form-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          var(--blue-bold),
-          var(--accent),
-          var(--accent-light)
-        );
-      }
-
-      .form-group {
-        margin-bottom: 22px;
-      }
-      .form-group label {
-        display: block;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 9px;
-      }
-      .form-group input {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 5px;
-        padding: 13px 16px;
-        color: var(--white);
-        font-family: "DM Sans", sans-serif;
-        font-size: 15px;
-        outline: none;
-        transition:
-          border-color 0.2s,
-          background 0.2s;
-      }
-      .form-group input:focus {
-        border-color: var(--accent);
-        background: rgba(245, 130, 10, 0.07);
-      }
-      .form-group input::placeholder {
-        color: rgba(168, 187, 221, 0.5);
-      }
-
-      .form-notice {
-        font-size: 11.5px;
-        color: var(--white-dim);
-        text-align: center;
-        margin-bottom: 26px;
-        line-height: 1.75;
-        background: rgba(255, 255, 255, 0.04);
-        border-radius: 4px;
-        padding: 12px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.07);
-      }
-      .form-notice strong {
-        color: var(--accent-light);
-        font-weight: 600;
-      }
-
-      .btn-primary {
-        width: 100%;
-        background: linear-gradient(135deg, var(--accent), var(--accent-light));
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 15px 24px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition:
-          opacity 0.2s,
-          transform 0.1s;
-        box-shadow: 0 4px 20px rgba(245, 130, 10, 0.35);
-      }
-      .btn-primary:hover {
-        opacity: 0.9;
-      }
-      .btn-primary:active {
-        transform: scale(0.99);
-      }
-      .btn-primary:disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-      }
-
-      .error-msg {
-        font-size: 12px;
-        color: var(--danger);
-        margin-top: 6px;
-        display: none;
-      }
-
-      /* ══ EXAM SCREEN ═══════════════════════════════ */
-      #exam {
-        display: none;
-      }
-      #exam.active {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow-y: auto;
-      }
-
-      .exam-header {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(15, 29, 58, 0.97);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(245, 130, 10, 0.2);
-        padding: 0 48px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 68px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-      }
-
-      .header-brand {
-        display: flex;
-        align-items: center;
-      }
-      .header-logo-img {
-        height: 40px;
-        width: auto;
-      }
-
-      .header-meta {
-        display: flex;
-        align-items: center;
-        gap: 36px;
-      }
-
-      .timer-block {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .timer-label {
-        font-size: 10px;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--white-dim);
-      }
-      .timer-display {
-        font-family: "DM Mono", monospace;
-        font-size: 24px;
-        font-weight: 500;
-        color: var(--accent-light);
-        transition: color 0.3s;
-        text-shadow: 0 0 20px rgba(245, 130, 10, 0.4);
-      }
-      .timer-display.warning {
-        color: var(--warning);
-        text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-      }
-      .timer-display.critical {
-        color: var(--danger);
-        animation: pulse 1s infinite;
-        text-shadow: 0 0 20px rgba(224, 82, 82, 0.5);
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
+    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <script>
+      // Apply saved theme before first paint (avoids a flash of the wrong theme).
+      // Assessment interior defaults to dark mode unless the candidate previously chose light.
+      (function () {
+        var saved = localStorage.getItem("amra-theme");
+        if (saved !== "light") {
+          document.documentElement.classList.add("dark");
         }
-        50% {
-          opacity: 0.5;
-        }
-      }
-
-      .progress-block {
-        text-align: right;
-      }
-      .progress-label {
-        font-size: 10px;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--white-dim);
-        margin-bottom: 6px;
-      }
-      .progress-bar-wrap {
-        width: 150px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
-        overflow: hidden;
-      }
-      .progress-bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, var(--accent), var(--accent-light));
-        border-radius: 3px;
-        transition: width 0.4s ease;
-        width: 0%;
-      }
-      .progress-count {
-        font-family: "DM Mono", monospace;
-        font-size: 12px;
-        color: var(--white-dim);
-        margin-top: 5px;
-      }
-
-      /* ══ EXAM BODY ══════════════════════════ */
-      .exam-body {
-        max-width: 880px;
-        margin: 0 auto;
-        padding: 52px 40px 90px;
-        width: 100%;
-      }
-
-      .section-divider {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 28px;
-        margin-top: 52px;
-      }
-      .section-divider:first-child {
-        margin-top: 0;
-      }
-      .section-divider .line {
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          rgba(245, 130, 10, 0.4),
-          transparent
-        );
-      }
-      .section-divider .line.right {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(245, 130, 10, 0.4)
-        );
-      }
-      .section-tag {
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: var(--accent);
-        white-space: nowrap;
-        padding: 5px 14px;
-        border: 1px solid rgba(245, 130, 10, 0.4);
-        border-radius: 3px;
-        background: rgba(245, 130, 10, 0.06);
-      }
-
-      /* ══ QUESTION CARD ══════════════════════ */
-      .question-card {
-        background: var(--navy-card);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-        padding: 28px 32px;
-        margin-bottom: 14px;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-        position: relative;
-      }
-      .question-card:hover {
-        border-color: rgba(245, 130, 10, 0.25);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-      }
-      .question-card.answered {
-        border-color: rgba(245, 130, 10, 0.45);
-        box-shadow: 0 4px 24px rgba(245, 130, 10, 0.08);
-      }
-      .question-card.answered::before {
-        content: "✓";
-        position: absolute;
-        top: 14px;
-        right: 16px;
-        font-size: 13px;
-        color: var(--accent);
-        font-weight: 700;
-      }
-
-      .q-number {
-        font-family: "DM Mono", monospace;
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--accent-dim);
-        letter-spacing: 0.12em;
-        margin-bottom: 10px;
-      }
-      .q-text {
-        font-size: 15.5px;
-        color: var(--white-soft);
-        margin-bottom: 20px;
-        line-height: 1.65;
-        font-weight: 400;
-      }
-
-      .options-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-
-      .option-label {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 5px;
-        padding: 12px 16px;
-        cursor: pointer;
-        transition:
-          background 0.15s,
-          border-color 0.15s;
-      }
-      .option-label:hover {
-        background: rgba(245, 130, 10, 0.08);
-        border-color: rgba(245, 130, 10, 0.35);
-      }
-      .option-label input[type="radio"] {
-        display: none;
-      }
-      .option-label.selected {
-        background: rgba(245, 130, 10, 0.13);
-        border-color: var(--accent);
-      }
-
-      .option-key {
-        flex-shrink: 0;
-        width: 28px;
-        height: 28px;
-        border: 1.5px solid rgba(245, 130, 10, 0.4);
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "DM Mono", monospace;
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--accent-dim);
-        transition: all 0.15s;
-      }
-      .option-label.selected .option-key {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #fff;
-      }
-      .option-text {
-        font-size: 14px;
-        color: var(--white-dim);
-        line-height: 1.55;
-        padding-top: 4px;
-      }
-      .option-label.selected .option-text {
-        color: var(--white);
-      }
-
-      /* ══ SUBMIT BAR ══════════════════════════ */
-      .submit-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(15, 29, 58, 0.98);
-        border-top: 1px solid rgba(245, 130, 10, 0.2);
-        backdrop-filter: blur(16px);
-        padding: 16px 48px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 100;
-        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.3);
-      }
-      .submit-info {
-        font-size: 13px;
-        color: var(--white-dim);
-      }
-      .submit-info strong {
-        color: var(--white);
-      }
-      .submit-info span {
-        color: var(--accent-light);
-      }
-
-      .btn-submit {
-        background: transparent;
-        border: 1.5px solid var(--accent);
-        color: var(--accent);
-        border-radius: 5px;
-        padding: 12px 40px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .btn-submit:hover {
-        background: var(--accent);
-        color: #fff;
-        box-shadow: 0 4px 20px rgba(245, 130, 10, 0.4);
-      }
-      .btn-submit:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
-
-      /* ══ RESULT ══════════════════════════════ */
-      #result {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: radial-gradient(
-          ellipse at 60% 40%,
-          #1e2d52 0%,
-          #0f1d3a 70%
-        );
-        align-items: center;
-        justify-content: center;
-        z-index: 300;
-        padding: 20px;
-      }
-      #result.active {
-        display: flex;
-      }
-
-      .result-inner {
-        text-align: center;
-        width: 100%;
-        max-width: 500px;
-        animation: fadeUp 0.8s ease both;
-        padding: 48px 40px;
-        background: rgba(25, 36, 72, 0.7);
-        border: 1px solid rgba(245, 130, 10, 0.2);
-        border-radius: 12px;
-        backdrop-filter: blur(12px);
-      }
-      .result-logo {
-        height: 64px;
-        width: auto;
-        margin: 0 auto 32px;
-        display: block;
-        filter: drop-shadow(0 4px 16px rgba(245, 130, 10, 0.2));
-      }
-      .result-title {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 34px;
-        font-weight: 600;
-        color: var(--white);
-        margin-bottom: 14px;
-        letter-spacing: 0.02em;
-      }
-      .result-line {
-        width: 56px;
-        height: 3px;
-        background: linear-gradient(90deg, var(--blue-bold), var(--accent));
-        margin: 0 auto 24px;
-        border-radius: 2px;
-      }
-      .result-msg {
-        font-size: 15px;
-        color: var(--white-dim);
-        line-height: 1.85;
-        margin-bottom: 36px;
-      }
-      .result-ref {
-        display: inline-block;
-        font-family: "DM Mono", monospace;
-        font-size: 11px;
-        color: var(--accent-dim);
-        letter-spacing: 0.12em;
-        border: 1px solid rgba(245, 130, 10, 0.25);
-        padding: 9px 22px;
-        border-radius: 4px;
-        background: rgba(245, 130, 10, 0.05);
-      }
-
-      /* ══ DIALOG / OVERLAYS ═══════════════════ */
-      .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(8px);
-        z-index: 400;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .overlay.active {
-        display: flex;
-      }
-
-      .dialog {
-        background: var(--navy-mid);
-        border: 1px solid rgba(245, 130, 10, 0.3);
-        border-radius: 8px;
-        padding: 44px;
-        width: 100%;
-        max-width: 440px;
-        text-align: center;
-        animation: fadeUp 0.3s ease both;
-        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
-      }
-      .dialog h3 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 26px;
-        color: var(--white);
-        margin-bottom: 14px;
-      }
-      .dialog p {
-        font-size: 14px;
-        color: var(--white-dim);
-        margin-bottom: 32px;
-        line-height: 1.7;
-      }
-      .dialog-btns {
-        display: flex;
-        gap: 12px;
-        margin-top: 8px;
-      }
-      .btn-cancel {
-        flex: 1;
-        padding: 13px;
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        color: var(--white-dim);
-        border-radius: 5px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition:
-          border-color 0.2s,
-          color 0.2s;
-      }
-      .btn-cancel:hover {
-        border-color: rgba(255, 255, 255, 0.4);
-        color: var(--white);
-      }
-      .btn-confirm {
-        flex: 1;
-        padding: 13px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-light));
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        cursor: pointer;
-        box-shadow: 0 4px 16px rgba(245, 130, 10, 0.35);
-        transition: opacity 0.2s;
-      }
-      .btn-confirm:hover {
-        opacity: 0.88;
-      }
-
-      .spinner {
-        width: 18px;
-        height: 18px;
-        border: 2px solid rgba(245, 130, 10, 0.3);
-        border-top-color: var(--accent);
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 8px;
-      }
-
-      .success-msg {
-        font-size: 13px;
-        color: var(--success);
-        margin-top: 8px;
-        display: none;
-        text-align: center;
-      }
-
-      .error-msg-submission {
-        font-size: 13px;
-        color: var(--danger);
-        margin-top: 8px;
-        display: none;
-        text-align: center;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(28px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 640px) {
-        .exam-header {
-          padding: 0 16px;
-          height: 60px;
-        }
-        .exam-body {
-          padding: 28px 16px 86px;
-        }
-        .submit-bar {
-          padding: 14px 16px;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-        .form-card {
-          padding: 28px 20px;
-        }
-        .header-meta {
-          gap: 16px;
-        }
-        .progress-block {
-          display: none;
-        }
-        .question-card {
-          padding: 20px 18px;
-        }
-        .brand-logo-img {
-          max-width: 260px;
-        }
-        .submit-info {
-          width: 100%;
-          order: 1;
-          font-size: 12px;
-        }
-        .btn-submit {
-          order: 2;
-          padding: 10px 30px;
-        }
-      }
-    </style>
+      })();
+    </script>
   </head>
   <body>
     <!-- ══ SPLASH ════════════════════════════════════ -->
     <div id="splash">
-      <div class="splash-inner">
-        <div class="brand-block">
-          <img
-            src="assets/amra-logo.jpg"
-            alt="AMRA - Alaric Market Research and Advisory"
-            class="brand-logo-img"
-          />
-          <div class="splash-divider"><span></span></div>
-          <p class="splash-tagline">Capital Markets · Proprietary Research</p>
-          <div style="margin: 12px 0">
-            <div class="splash-level">Level 1</div>
-          </div>
-          <p class="splash-title">Entrance Assessment Portal</p>
+      <header class="splash-header">
+        <div class="logo-badge">
+          <span class="logo-badge-main text-lg">AMRA</span>
+          <span class="logo-badge-sub">Market Research &amp; Advisory</span>
         </div>
-        <div class="form-card">
-          <div class="form-group">
-            <label for="inp-name">Full Name</label>
-            <input
-              type="text"
-              id="inp-name"
-              placeholder="e.g. Arjun Mehta"
-              autocomplete="name"
-            />
-            <p class="error-msg" id="err-name">Please enter your full name.</p>
+      </header>
+      <div class="splash-center">
+        <div class="splash-inner">
+          <div class="brand-block">
+            <div class="splash-divider"><span></span></div>
+            <p class="splash-tagline">Capital Markets · Proprietary Research</p>
+            <div class="my-3">
+              <div class="splash-level">Level 1</div>
+            </div>
+            <p class="splash-title">Entrance Assessment Portal</p>
           </div>
-          <div class="form-group">
-            <label for="inp-email">Email Address</label>
-            <input
-              type="email"
-              id="inp-email"
-              placeholder="e.g. arjun@email.com"
-              autocomplete="email"
-            />
-            <p class="error-msg" id="err-email">
-              Please enter a valid email address.
+          <div class="form-card">
+            <div class="form-group">
+              <label for="inp-name">Full Name</label>
+              <input
+                type="text"
+                id="inp-name"
+                placeholder="e.g. Arjun Mehta"
+                autocomplete="name"
+              />
+              <p class="error-msg" id="err-name">Please enter your full name.</p>
+            </div>
+            <div class="form-group">
+              <label for="inp-email">Email Address</label>
+              <input
+                type="email"
+                id="inp-email"
+                placeholder="e.g. arjun@email.com"
+                autocomplete="email"
+              />
+              <p class="error-msg" id="err-email">
+                Please enter a valid email address.
+              </p>
+            </div>
+            <p class="form-notice">
+              This assessment contains <strong>25 questions</strong> to be
+              completed in <strong>30 minutes</strong>. The timer begins
+              immediately upon entry. Ensure a stable internet connection before
+              proceeding.
             </p>
+            <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
           </div>
-          <p class="form-notice">
-            This assessment contains <strong>25 questions</strong> to be
-            completed in <strong>30 minutes</strong>. The timer begins
-            immediately upon entry. Ensure a stable internet connection before
-            proceeding.
-          </p>
-          <button class="btn-primary" id="btn-begin">Begin Assessment →</button>
         </div>
       </div>
     </div>
@@ -912,11 +80,10 @@
     <div id="exam">
       <header class="exam-header">
         <div class="header-brand">
-          <img
-            src="assets/amra-logo.jpg"
-            alt="AMRA Logo"
-            style="height: 40px; width: auto"
-          />
+          <div class="logo-badge">
+            <span class="logo-badge-main text-sm">AMRA</span>
+            <span class="logo-badge-sub">Market Research &amp; Advisory</span>
+          </div>
         </div>
         <div class="header-meta">
           <div class="timer-block">
@@ -930,6 +97,16 @@
             </div>
             <div class="progress-count" id="progress-count">0 / 25</div>
           </div>
+          <button
+            class="theme-toggle"
+            id="btn-theme-toggle"
+            type="button"
+            aria-label="Toggle light/dark mode"
+            title="Toggle light/dark mode"
+          >
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
         </div>
       </header>
       <div class="exam-body" id="exam-body"></div>
@@ -1005,24 +182,17 @@
     <!-- ══ RESULT ═════════════════════════════════════ -->
     <div id="result">
       <div class="result-inner">
-        <img
-          src="assets/amra-logo.jpg"
-          alt="AMRA Logo"
-          style="
-            height: 64px;
-            width: auto;
-            margin: 0 auto 32px;
-            display: block;
-            filter: drop-shadow(0 4px 16px rgba(245, 130, 10, 0.2));
-          "
-        />
+        <div class="logo-badge mx-auto mb-8">
+          <span class="logo-badge-main text-2xl">AMRA</span>
+          <span class="logo-badge-sub">Market Research &amp; Advisory</span>
+        </div>
         <h2 class="result-title">Assessment Complete</h2>
         <div class="result-line"></div>
         <p class="result-msg">
           Thank you for completing the Alaric Market Research & Advisory Level 1
           Assessment.<br /><br />
           Your responses have been successfully submitted and recorded.<br /><br />
-          <strong style="color: var(--accent-light)">
+          <strong class="text-indigo-500 dark:text-indigo-400">
             Results Will Be Announced Soon
           </strong>
         </p>
@@ -1464,7 +634,7 @@
             return;
           }
 
-          document.getElementById("splash").classList.add("hidden");
+          document.getElementById("splash").classList.add("is-hidden");
           document.getElementById("exam").classList.add("active");
 
           buildExam();
@@ -1689,6 +859,17 @@
         document.getElementById("overlay-form").classList.remove("active");
         document.getElementById("result").classList.add("active");
         document.getElementById("result-ref").textContent = `REF: ${refId}`;
+      }
+
+      // ══════════════════════════════════════════
+      //  THEME TOGGLE (exam/result interior only — splash keeps fixed brand colors)
+      // ══════════════════════════════════════════
+      const themeToggleBtn = document.getElementById("btn-theme-toggle");
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+          const isDark = document.documentElement.classList.toggle("dark");
+          localStorage.setItem("amra-theme", isDark ? "dark" : "light");
+        });
       }
     </script>
   </body>
