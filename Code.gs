@@ -242,7 +242,7 @@ function generateToken(fullName, email, level) {
   const createdAt  = now.toISOString();
   const expiresAt  = new Date(now.getTime() + expiryHours * 3600 * 1000).toISOString();
 
-  const candidateUrl = `https://amra-capital.github.io/Assessment?token=${token}`;
+  const candidateUrl = `https://amra-base.github.io/AMRA_ASSESSMENT/?token=${token}`;
 
   let createdBy = "admin";
   try { createdBy = Session.getEffectiveUser().getEmail() || "admin"; } catch (_) {}
